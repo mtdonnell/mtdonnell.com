@@ -356,6 +356,16 @@
   }
   .full-proj p { color: var(--body); max-width: 70ch; }
   .full-proj p + p { margin-top: 14px; }
+  .full-proj em { color: var(--ink); font-style: italic; }
+
+  /* Track headings on the portfolio page */
+  .track-head { margin: 56px 0 22px; }
+  .track-head:first-child { margin-top: 0; }
+  .track-head .section-sub { margin-bottom: 0; }
+
+  /* Repo link under a project card */
+  .proj-links { margin-top: 14px !important; }
+  .proj-links a { font-family: var(--mono); font-size: 13px; }
   .full-proj .next-note {
     margin-top: 16px;
     padding: 12px 16px;
@@ -549,7 +559,71 @@
     text-decoration: none;
   }
 
+  /* ---------- Terminal ---------- */
+  .term {
+    background: #0E0C0B;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.62;
+    max-width: 760px;
+  }
+  .term:focus-within { border-color: var(--orange-line); }
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 14px;
+    background: var(--bg-raise);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .term-dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+  .term-dot.red { background: #FF5F57; }
+  .term-dot.amber { background: #FEBC2E; }
+  .term-dot.green { background: #28C840; }
+  .term-title { margin-left: 10px; font-size: 12px; color: var(--faint); }
+  .term-body {
+    padding: 16px 16px 8px;
+    height: 320px;
+    overflow-y: auto;
+    color: var(--body);
+    scrollbar-width: thin;
+    scrollbar-color: var(--line) transparent;
+  }
+  .term-line { white-space: pre-wrap; word-break: break-word; min-height: 1px; }
+  .term-muted  { color: var(--faint); }
+  .term-accent { color: var(--orange-hot); }
+  .term-ok     { color: var(--green); }
+  .term-echo   { color: var(--ink); }
+  .term-err    { color: #F87171; }
+  .term-body a { color: var(--orange-hot); }
+  .term-input-row {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 16px 14px;
+    border-top: 1px solid var(--line-soft);
+  }
+  .term-prompt { color: var(--green); flex-shrink: 0; }
+  .term-input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 13.5px;
+    caret-color: var(--orange);
+  }
+
   @media (max-width: 640px) {
+    .term { font-size: 12px; }
+    .term-body { height: 260px; }
+    .term-input { font-size: 12px; }
+    .term-title { display: none; }
     .nav-links button { padding: 19px 8px 17px; font-size: 13px; }
     .nav-links .resume-link { padding: 7px 12px; font-size: 13px; margin-left: 6px; }
     .hero { padding: 64px 0 56px; }
@@ -639,6 +713,27 @@
       </div>
     </div>
   </header>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="section-kicker">Terminal</div>
+      <h2 class="section-title">Have a poke around</h2>
+      <p class="section-sub">Type <code>help</code> and hit Enter. Everything it tells you is true.</p>
+
+      <div class="term">
+        <div class="term-bar">
+          <span class="term-dot red"></span><span class="term-dot amber"></span><span class="term-dot green"></span>
+          <span class="term-title">matt@mtdonnell — bash</span>
+        </div>
+        <div class="term-body" id="term-body" role="log" aria-live="polite" aria-label="Terminal output"></div>
+        <form class="term-input-row" id="term-form" autocomplete="off">
+          <label class="term-prompt" for="term-input">matt@mtdonnell:~$</label>
+          <input id="term-input" class="term-input" type="text" autocomplete="off"
+                 autocapitalize="off" spellcheck="false" aria-label="Type a command">
+        </form>
+      </div>
+    </div>
+  </section>
 
   <section class="block">
     <div class="wrap">
@@ -765,36 +860,23 @@
 <main id="page-portfolio" class="page">
   <div class="wrap page-head">
     <div class="section-kicker">Portfolio</div>
-    <h2>Built, building, and next up.</h2>
+    <h2>Things I built because I wanted them to exist.</h2>
     <p>
-      Everything here runs in my home lab. I publish the roadmap because plans you
-      say out loud are plans you actually finish. Write-ups get added as each
-      project ships.
+      Two tracks: the infrastructure I run, and what I've built on top of it with AI.
+      None of this was assigned to me. My professional work lives on the resume and
+      the About page &mdash; this is the other half. I publish the roadmap because
+      plans you say out loud are plans you actually finish.
     </p>
   </div>
 
   <section class="block" style="border-top: none; padding-top: 44px;">
     <div class="wrap">
 
-      <article class="full-proj">
-        <div class="top">
-          <h3>AI-Powered IT Knowledge Base</h3>
-          <span class="badge active">Active</span>
-        </div>
-        <p>
-          A self-hosted documentation and knowledge base app built with Flask and
-          SQLite, using the Claude and OpenAI APIs with agentic workflows to search,
-          summarize, and answer questions against my own technical documentation.
-          Runs in an Ubuntu LXC container on Proxmox. Built to solve a real problem:
-          knowledge scattered across notes, tickets, and my own head.
-        </p>
-        <div class="next-note"><b>Up next:</b> Docker migration, CI/CD with GitHub Actions, and a RAG upgrade with embeddings and vector search.</div>
-        <div class="tags">
-          <span class="tag">Flask</span><span class="tag">SQLite</span><span class="tag">Claude API</span>
-          <span class="tag">OpenAI API</span><span class="tag">Agentic Workflows</span>
-          <span class="tag">Ubuntu LXC</span><span class="tag">Proxmox</span>
-        </div>
-      </article>
+      <div class="track-head">
+        <div class="section-kicker">Track 01 &mdash; Infrastructure</div>
+        <h2 class="section-title">What I run</h2>
+        <p class="section-sub">The platform everything else sits on.</p>
+      </div>
 
       <article class="full-proj">
         <div class="top">
@@ -802,14 +884,39 @@
           <span class="badge active">Active</span>
         </div>
         <p>
-          The platform everything else runs on. A virtualized environment for testing
-          infrastructure changes, running containerized services, and breaking things
-          safely before they matter. High-availability thinking at a scale I can
-          afford to blow up.
+          A virtualized fleet for testing infrastructure changes, running containerized
+          services, and breaking things safely before they matter. Everything else on
+          this page runs here. High-availability thinking at a scale I can afford to
+          blow up &mdash; which is exactly why it's where I learn the things production
+          won't let me.
         </p>
         <div class="tags">
           <span class="tag">Proxmox VE</span><span class="tag">LXC</span><span class="tag">Linux</span>
           <span class="tag">Virtualization</span><span class="tag">Self-Hosting</span>
+        </div>
+      </article>
+
+      <article class="full-proj">
+        <div class="top">
+          <h3>Distributed Monitoring &amp; Automation Platform</h3>
+          <span class="badge active">Active</span>
+        </div>
+        <p>
+          A multi-agent system that watches a live online marketplace for state changes
+          and reacts within seconds. A central hub API coordinates distributed watcher
+          agents running across the Proxmox fleet, with client-side plugins reporting
+          telemetry back and a shared database reconciling what each agent believes it
+          saw. The hard part was never the watching &mdash; it was designing for agents
+          that disagree, and for a data source that lies by omission.
+        </p>
+        <div class="next-note">
+          <b>Deliberately vague:</b> the domain and mechanism are confidential. The
+          architecture is the interesting part anyway.
+        </div>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Distributed Agents</span>
+          <span class="tag">Hub API</span><span class="tag">SQLite</span>
+          <span class="tag">Event Reconciliation</span><span class="tag">Proxmox</span>
         </div>
       </article>
 
@@ -829,19 +936,117 @@
         </div>
       </article>
 
+      <div class="track-head">
+        <div class="section-kicker">Track 02 &mdash; Applied AI</div>
+        <h2 class="section-title">What I've built with it</h2>
+        <p class="section-sub">
+          Tools I actually use, not demos. Most of these exist because I wanted the
+          thing and nobody had built it the way I wanted it.
+        </p>
+      </div>
+
       <article class="full-proj">
         <div class="top">
-          <h3>Document Automation Pipeline</h3>
+          <h3>Second Brain OS</h3>
           <span class="badge active">Active</span>
         </div>
         <p>
-          A Node.js tool that generates formatted Word documents from structured data.
-          Started as a way to stop hand-formatting the same documents over and over,
-          turned into a reusable pipeline for producing clean, consistent output
-          programmatically.
+          A personal AI knowledge operating system. Every question you ask gets answered
+          <em>and</em> compressed into a permanent knowledge node, so the act of looking
+          something up builds a graph instead of evaporating into chat history. Built on
+          the Anthropic API with a Vite front end.
+        </p>
+        <p class="proj-links">
+          <a href="https://github.com/mtdonnell/BrainOS" target="_blank" rel="noopener">github.com/mtdonnell/BrainOS &rarr;</a>
         </p>
         <div class="tags">
-          <span class="tag">Node.js</span><span class="tag">docx</span><span class="tag">Automation</span>
+          <span class="tag">Node.js</span><span class="tag">Vite</span><span class="tag">Claude API</span>
+          <span class="tag">Knowledge Graph</span>
+        </div>
+      </article>
+
+      <article class="full-proj">
+        <div class="top">
+          <h3>Synaptic</h3>
+          <span class="badge active">Active</span>
+        </div>
+        <p>
+          A personal learning engine built around how memory actually works. The AI
+          answers your question, then gives you an analogy to make it stick, generates
+          active-recall questions, and resurfaces the concept at 1, 3, 7, 14, 30, and 90
+          days. Progress shows up as XP curves, a knowledge map, and an activity heatmap.
+          Spaced repetition is a solved problem; making yourself do it isn't.
+        </p>
+        <p class="proj-links">
+          <a href="https://github.com/mtdonnell/Synaptic" target="_blank" rel="noopener">github.com/mtdonnell/Synaptic &rarr;</a>
+        </p>
+        <div class="tags">
+          <span class="tag">Node.js</span><span class="tag">Vite</span><span class="tag">Claude API</span>
+          <span class="tag">Spaced Repetition</span><span class="tag">Active Recall</span>
+        </div>
+      </article>
+
+      <article class="full-proj">
+        <div class="top">
+          <h3>AI-Powered IT Knowledge Base</h3>
+          <span class="badge active">Active</span>
+        </div>
+        <p>
+          A self-hosted Flask and SQLite service that turns raw, messy IT notes into
+          polished SOP articles using Claude, with full-text search across generated
+          documents and the source notes behind them. Runs in an Ubuntu LXC container on
+          Proxmox. Built to solve a real problem: knowledge scattered across notes,
+          tickets, and my own head.
+        </p>
+        <div class="next-note"><b>Up next:</b> Docker migration, CI/CD with GitHub Actions, and a RAG upgrade with embeddings and vector search.</div>
+        <div class="tags">
+          <span class="tag">Flask</span><span class="tag">SQLite</span><span class="tag">Claude API</span>
+          <span class="tag">Full-Text Search</span><span class="tag">Ubuntu LXC</span>
+          <span class="tag">Proxmox</span>
+        </div>
+      </article>
+
+      <article class="full-proj">
+        <div class="top">
+          <h3>Multi-Agent Story Studio</h3>
+          <span class="badge neutral">Archived</span>
+        </div>
+        <p>
+          A crew of specialized Claude agents that produced illustrated learning films
+          for my kids, in the spirit of <em>Bluey</em> and <em>Blippi</em>. Each agent
+          held one job &mdash; a story hunter to find the idea, an author to write it,
+          others down the chain &mdash; and handed off to the next. The pipeline reached
+          out to ElevenLabs for narration and a separate service for image and video
+          generation, so a finished episode came out the far end.
+        </p>
+        <p>
+          It's the project that taught me the most about agent design: role separation
+          beats one giant prompt, and the handoff format between agents matters more
+          than any individual agent's instructions.
+        </p>
+        <div class="tags">
+          <span class="tag">Claude</span><span class="tag">Multi-Agent Orchestration</span>
+          <span class="tag">ElevenLabs</span><span class="tag">Generative Video</span>
+          <span class="tag">Prompt Design</span>
+        </div>
+      </article>
+
+      <article class="full-proj">
+        <div class="top">
+          <h3>PDF Editor</h3>
+          <span class="badge neutral">Shipped</span>
+        </div>
+        <p>
+          A containerized PDF editing tool with a split backend and front end, packaged
+          with Docker Compose. Built because every free online PDF editor wants your
+          document on someone else's server.
+        </p>
+        <p class="proj-links">
+          <a href="https://github.com/mtdonnell/PDF-Editor" target="_blank" rel="noopener">github.com/mtdonnell/PDF-Editor &rarr;</a>
+        </p>
+        <div class="tags">
+          <span class="tag">Docker Compose</span><span class="tag">Self-Hosting</span>
+          <span class="tag">PDF</span>
         </div>
       </article>
 
@@ -1162,6 +1367,171 @@
   });
   window.addEventListener("popstate", () => showPage(location.hash.slice(1)));
   showPage(location.hash.slice(1) || "home");
+
+  /* ---------- Terminal ---------- */
+  (function () {
+    const out = document.getElementById("term-body");
+    const form = document.getElementById("term-form");
+    const input = document.getElementById("term-input");
+    if (!out || !form || !input) return;
+
+    const history = [];
+    let histPos = -1;
+
+    function line(text, cls) {
+      const el = document.createElement("div");
+      el.className = "term-line" + (cls ? " " + cls : "");
+      el.textContent = text === undefined ? "" : text;
+      out.appendChild(el);
+    }
+    function rich(html) {
+      const el = document.createElement("div");
+      el.className = "term-line";
+      el.innerHTML = html;
+      out.appendChild(el);
+    }
+    function scroll() { out.scrollTop = out.scrollHeight; }
+
+    const cmds = {
+      help() {
+        line("Available commands:", "term-accent");
+        line("  whoami      who I am, briefly");
+        line("  lab         what runs in the home lab");
+        line("  projects    what I've built");
+        line("  stack       tools I work with");
+        line("  certs       certifications");
+        line("  contact     how to reach me");
+        line("  resume      my resume");
+        line("  github      my code");
+        line("  neofetch    system info");
+        line("  clear       wipe the screen");
+        line("");
+        line("Arrow keys scroll through command history.", "term-muted");
+      },
+      whoami() {
+        line("Matthew Donnell — IT Systems Engineer III", "term-echo");
+        line("St. Louis, MO", "term-muted");
+        line("");
+        line("I design the high-availability infrastructure behind clinical");
+        line("communication systems. Fifteen years ago I was an administrative");
+        line("assistant for a county government. The path between ran through a");
+        line("help desk and a lot of late nights.");
+        line("");
+        rich('<a href="#about" data-page="about">Read the longer version &rarr;</a>');
+      },
+      lab() {
+        line("Proxmox VE cluster", "term-accent");
+        line("  ├── LXC   knowledge base (Flask + SQLite + Claude)");
+        line("  ├── LXC   distributed watcher agents");
+        line("  ├── VM    Windows test environment");
+        line("  └── plan  Grafana + Prometheus, then Wazuh SIEM");
+        line("");
+        line("Everything I know about production, I broke here first.", "term-muted");
+      },
+      projects() {
+        line("Infrastructure", "term-accent");
+        line("  proxmox-home-lab            the platform it all runs on");
+        line("  distributed-monitoring      multi-agent watcher fleet [confidential]");
+        line("  obsidian-vault              runbooks and lab notes");
+        line("");
+        line("Applied AI", "term-accent");
+        line("  BrainOS                     answers compressed into a knowledge graph");
+        line("  Synaptic                    spaced-repetition learning engine");
+        line("  it-knowledgebase-ai         raw notes to polished SOPs");
+        line("  multi-agent-story-studio    learning films for my kids [archived]");
+        line("  PDF-Editor                  self-hosted, containerized");
+        line("");
+        rich('<a href="#portfolio" data-page="portfolio">Full portfolio &rarr;</a>');
+      },
+      stack() {
+        line("infra     Proxmox · VMware ESXi · Windows Server · Linux · LXC · Docker");
+        line("data      SQL Server · Always On AGs · WSFC · SQLite");
+        line("cloud     Azure · Entra ID · SSO · Cloudflare");
+        line("network   VLANs · DNS · load balancing · VoIP/SIP");
+        line("monitor   PRTG · service-dependency sensor design");
+        line("code      Python · PowerShell · Node.js · Flask");
+        line("ai        Claude API · agentic workflows · MCP");
+      },
+      certs() {
+        line("CompTIA Security+                     issued Feb 2024", "term-ok");
+        line("ISC² Certified in Cybersecurity (CC)  issued Apr 2024", "term-ok");
+        line("Rauland Platform Certifications ×3    enterprise comms", "term-ok");
+        line("Microsoft Azure AI Fundamentals       AI-900, in progress", "term-accent");
+      },
+      contact() {
+        rich('email     <a href="mailto:matthewtdonnell@gmail.com">matthewtdonnell@gmail.com</a>');
+        rich('linkedin  <a href="https://linkedin.com/in/mdonn" target="_blank" rel="noopener">linkedin.com/in/mdonn</a>');
+        rich('github    <a href="https://github.com/mtdonnell" target="_blank" rel="noopener">github.com/mtdonnell</a>');
+        line("location  St. Louis, MO");
+      },
+      resume() {
+        rich('<a href="/resume.pdf" target="_blank" rel="noopener">Opening resume.pdf &rarr;</a>');
+      },
+      github() {
+        rich('<a href="https://github.com/mtdonnell" target="_blank" rel="noopener">github.com/mtdonnell &rarr;</a>');
+      },
+      neofetch() {
+        line("        ◆         matt@mtdonnell", "term-accent");
+        line("      ◆   ◆       ---------------");
+        line("    ◆   ◆   ◆     Role     IT Systems Engineer III");
+        line("      ◆   ◆       Location St. Louis, MO");
+        line("        ◆         Uptime   11 years in IT");
+        line("                  Shell    PowerShell / bash");
+        line("                  Host     Proxmox VE cluster");
+        line("                  Editor   Obsidian + Claude Code");
+      },
+      clear() { out.innerHTML = ""; return true; },
+      ls() {
+        line("about/  portfolio/  contact/  resume.pdf");
+      },
+      sudo() {
+        line("matt is not in the sudoers file. This incident has been reported.", "term-err");
+      },
+      exit() {
+        line("There's no exit. Try 'contact' instead.", "term-muted");
+      }
+    };
+    cmds.skills = cmds.stack;
+    cmds.about = cmds.whoami;
+    cmds.cv = cmds.resume;
+
+    function run(raw) {
+      const cmd = raw.trim().toLowerCase();
+      line("matt@mtdonnell:~$ " + raw, "term-echo");
+      if (!cmd) { scroll(); return; }
+      if (cmds[cmd]) {
+        cmds[cmd]();
+      } else {
+        line("command not found: " + cmd, "term-err");
+        line("Type 'help' to see what's available.", "term-muted");
+      }
+      line("");
+      scroll();
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const val = input.value;
+      if (val.trim()) { history.push(val); }
+      histPos = history.length;
+      input.value = "";
+      run(val);
+    });
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowUp") {
+        if (histPos > 0) { histPos--; input.value = history[histPos]; }
+        e.preventDefault();
+      } else if (e.key === "ArrowDown") {
+        if (histPos < history.length - 1) { histPos++; input.value = history[histPos]; }
+        else { histPos = history.length; input.value = ""; }
+        e.preventDefault();
+      }
+    });
+
+    line("mtdonnell.com — type 'help' to get started", "term-muted");
+    line("");
+  })();
 </script>
 
 </body>
