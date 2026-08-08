@@ -1,0 +1,8 @@
+# Normalize text files to LF inside the repo; checkout still respects the platform.
+* text=auto
+
+# Binary assets must never be line-ending converted.
+*.png binary
+*.ico binary
+*.jpg binary
+*.pdf binary
