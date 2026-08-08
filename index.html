@@ -566,7 +566,7 @@
   "@type": "Person",
   "name": "Matthew Donnell",
   "url": "https://mtdonnell.com/",
-  "jobTitle": "IT Systems Engineer",
+  "jobTitle": "IT Systems Engineer III",
   "description": "IT Systems Engineer focused on infrastructure, automation, and applied AI.",
   "address": {
     "@type": "PostalPlace",
@@ -620,7 +620,7 @@
     <div class="wrap">
       <div class="eyebrow">Infrastructure · Automation · Applied AI</div>
       <h1>Hi, I'm Matthew Donnell<span class="accent">.</span></h1>
-      <div class="role">IT Systems Engineer</div>
+      <div class="role">IT Systems Engineer III</div>
       <div class="creds">Security+ · ISC² CC · Azure AI-900 (in progress)</div>
       <p class="tagline">
         Building hands-on projects across virtualization, monitoring, AI tooling,
@@ -676,15 +676,15 @@
       <div class="section-kicker">About Me</div>
       <div class="about-grid" style="max-width: 720px;">
         <p>
-          I've spent ten years in enterprise IT, starting in sales engineering and
-          working my way into hands-on systems engineering. I got into this field the
-          same way most people in it did: by taking things apart to see how they
-          worked, then learning how to put them back together better.
+          Fifteen years ago I was an administrative assistant for Jefferson County.
+          Today I design the high-availability infrastructure behind clinical
+          communication systems. The path between ran through a help desk, a channel
+          sales role, and a lot of nights taking things apart to see how they worked.
         </p>
         <p>
           These days my focus is infrastructure, automation, and the practical side
-          of AI. I learn by building, and I've started documenting everything as I go
-          so I can actually explain what I built and why.
+          of AI. I learn by building, and I document everything as I go so I can
+          actually explain what I built and why.
         </p>
         <div style="margin-top: 6px;">
           <button class="btn btn-ghost" data-page="about">Read About Me</button>
@@ -920,29 +920,39 @@
 <main id="page-about" class="page">
   <div class="wrap page-head">
     <div class="section-kicker">About Me</div>
-    <h2>Curiosity, then a career.</h2>
+    <h2>From a county desk to high availability.</h2>
   </div>
   <section class="block" style="border-top: none; padding-top: 36px;">
     <div class="wrap about-grid">
       <p>
-        I got into technology the way most people in this field did: by taking things
-        apart to see how they worked, then learning how to put them back together
-        better. That curiosity turned into a ten-year career in enterprise IT.
+        Fifteen years ago I was an administrative assistant for Jefferson County,
+        Missouri. Today I design the high-availability infrastructure behind clinical
+        communication systems. The path between those two things ran through a help
+        desk, a channel sales role, and a lot of nights taking things apart to see how
+        they worked.
       </p>
       <p>
-        I started on the sales engineering side at Ricoh, designing and demonstrating
-        enterprise software solutions for large clients. Those years taught me
-        discovery, requirements gathering, and how to explain complex systems to
-        people who don't live in them. Then I moved into hands-on systems engineering,
-        where I now design and support high-availability infrastructure: virtualization,
-        SQL Server availability groups, identity, integrations, and the monitoring
-        that keeps it all honest.
+        I joined Ricoh in 2015 as a support analyst and spent nine years there. I moved
+        through channel account management, which taught me discovery, requirements
+        gathering, and how to explain a complex system to someone who doesn't live in
+        it, and then into technology design, architecting enterprise software solutions
+        for large clients. Those years taught me that the hard part of infrastructure is
+        rarely the technology. It's understanding what the people using it actually need
+        it to do.
       </p>
       <p>
-        These days my focus is infrastructure, automation, and the practical side of
-        AI. My home lab is where I test ideas, build tools I actually use, and pick up
-        skills my day job doesn't hand me. I've started documenting everything as I
-        go, because a project I can't explain is a project I only half understand.
+        In June 2024 I moved to Primary Systems to go fully hands-on. I came in as an
+        IT Systems Engineer I, moved to II in 2025, and to III in August 2026. The work
+        is high-availability infrastructure for clinical environments: virtualization,
+        SQL Server Always On availability groups, identity, integrations, and the
+        monitoring that keeps all of it honest. In healthcare the stakes stay legible.
+        When a system goes quiet, a nurse call doesn't route.
+      </p>
+      <p>
+        My home lab is where I test ideas before they go anywhere that matters, build
+        tools I actually use, and pick up skills the day job doesn't hand me. I document
+        everything as I go, because a project I can't explain is a project I only half
+        understand.
       </p>
       <p class="aside">
         Outside of work: two kids, a home lab that is always one project deeper than
@@ -951,6 +961,83 @@
       </p>
     </div>
   </section>
+  <section class="block">
+    <div class="wrap">
+      <div class="section-kicker">Architecture</div>
+      <h2 class="section-title">Decisions I owned</h2>
+      <p class="section-sub">
+        The reasoning matters more than the deployment. Client and site details are
+        deliberately generic.
+      </p>
+
+      <article class="full-proj">
+        <div class="top"><h3>Monitoring the dependency, not the host</h3></div>
+        <p>
+          The default way to monitor a server is to ask whether it answers. That
+          confirms the host is alive; it says nothing about whether the system is doing
+          its job. In a multi-site clinical communications platform, messaging depends
+          on SQL Server Service Broker queues, which means a server can pass every ping
+          check while message delivery has quietly stopped. I built PRTG sensors against
+          the components those solutions actually depend on: Service Broker monitors and
+          availability checks, rather than reachability alone. In a clinical setting the
+          distinction isn't academic. "The server is up" and "the nurse call routed" are
+          different statements.
+        </p>
+        <div class="tags">
+          <span class="tag">PRTG</span><span class="tag">SQL Service Broker</span>
+          <span class="tag">Availability Monitoring</span><span class="tag">Failure-mode design</span>
+        </div>
+      </article>
+
+      <article class="full-proj">
+        <div class="top"><h3>A repeatable availability topology</h3></div>
+        <p>
+          I designed the SQL Server Always On availability group setup for the
+          multi-site clinical communications deployments I've implemented. The goal was
+          that each site got the same architecture rather than a bespoke build shaped by
+          whoever happened to be on site that week. Repeatability is what makes an
+          environment supportable by someone who wasn't there when it was built, and
+          it's most of the difference between an installation and an architecture.
+        </p>
+        <div class="tags">
+          <span class="tag">SQL Server</span><span class="tag">Always On Availability Groups</span>
+          <span class="tag">Failover Clustering</span><span class="tag">Standardization</span>
+        </div>
+      </article>
+
+      <article class="full-proj">
+        <div class="top"><h3>Getting off an unsupported hypervisor</h3></div>
+        <p>
+          I contributed to migrating our server environment off VMware ESXi 5.5 onto 6.5
+          and later. Running past end-of-support usually gets filed as technical debt.
+          In an environment supporting clinical operations it's closer to a risk
+          decision, because the fallback position when something breaks is "no vendor
+          support" during a window when the systems have to stay available anyway.
+        </p>
+        <div class="tags">
+          <span class="tag">VMware ESXi</span><span class="tag">Migration</span>
+          <span class="tag">Lifecycle Management</span><span class="tag">Risk</span>
+        </div>
+      </article>
+
+      <article class="full-proj">
+        <div class="top"><h3>Renumbering without breaking failover</h3></div>
+        <p>
+          I reconfigured availability group environments after IP migrations. On paper
+          that's a change of address. In practice the listener IP, the cluster resource,
+          and DNS all have to move together, and an availability group that comes back
+          in a partly-migrated state can report healthy while failover is quietly
+          broken. That's the worst version of the failure, because nobody finds out
+          until the day it's needed.
+        </p>
+        <div class="tags">
+          <span class="tag">Always On Availability Groups</span><span class="tag">WSFC</span>
+          <span class="tag">DNS</span><span class="tag">Network Migration</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
   <section class="block">
     <div class="wrap">
       <div class="section-kicker">Certifications</div>
@@ -982,7 +1069,7 @@
   <div class="wrap page-head">
     <div class="section-kicker">Contact</div>
     <h2>Get in touch.</h2>
-    <p>Open to conversations about infrastructure, solutions engineering, and interesting technical problems. Email or LinkedIn gets the fastest response.</p>
+    <p>I like talking shop &mdash; high-availability design, monitoring that catches the right failures, and the practical side of AI. If you're working on something in that space, or something here was useful, get in touch. Email or LinkedIn gets the fastest response.</p>
   </div>
   <section class="block" style="border-top: none; padding-top: 40px;">
     <div class="wrap">
