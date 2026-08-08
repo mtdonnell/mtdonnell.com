@@ -1,0 +1,5 @@
+# https://mtdonnell.com
+User-agent: *
+Allow: /
+
+Sitemap: https://mtdonnell.com/sitemap.xml

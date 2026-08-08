@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matthew Donnell | Infrastructure, Automation, and Applied AI</title>
+<meta name="description" content="Matthew Donnell is an IT Systems Engineer with Security+ and ISC² CC, building hands-on projects across virtualization, monitoring, AI tooling, and automation.">
+<meta name="theme-color" content="#F97316">
+<meta name="author" content="Matthew Donnell">
+<link rel="canonical" href="https://mtdonnell.com/">
+
+<!-- Open Graph: controls how the link renders when shared on LinkedIn, Slack, iMessage -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mtdonnell.com/">
+<meta property="og:site_name" content="Matthew Donnell">
+<meta property="og:title" content="Matthew Donnell | IT Systems Engineer">
+<meta property="og:description" content="Infrastructure, automation, and applied AI. Hands-on projects across virtualization, monitoring, AI tooling, and automation.">
+<meta property="og:image" content="https://mtdonnell.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Matthew Donnell, IT Systems Engineer">
+
+<!-- Twitter/X card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Matthew Donnell | IT Systems Engineer">
+<meta name="twitter:description" content="Infrastructure, automation, and applied AI. Hands-on projects across virtualization, monitoring, AI tooling, and automation.">
+<meta name="twitter:image" content="https://mtdonnell.com/assets/og-image.png">
+
+<!-- Favicons -->
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #131110;
+    --bg-raise: #1A1715;
+    --panel: #1E1B18;
+    --line: #2E2A25;
+    --line-soft: #262220;
+    --ink: #F2EEE8;
+    --body: #BDB6AC;
+    --muted: #8D867B;
+    --faint: #6B655C;
+    --orange: #F97316;
+    --orange-hot: #FB923C;
+    --orange-deep: #C2410C;
+    --orange-tint: rgba(249, 115, 22, 0.12);
+    --orange-line: rgba(249, 115, 22, 0.35);
+    --green: #4ADE80;
+    --green-tint: rgba(74, 222, 128, 0.1);
+    --gold: #FBBF24;
+    --gold-tint: rgba(251, 191, 36, 0.1);
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+    --display: "Sora", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+  ::selection { background: var(--orange); color: #131110; }
+  body {
+    background: var(--bg);
+    color: var(--body);
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 16.5px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+  .wrap-narrow { max-width: 740px; margin-left: auto; margin-right: auto; padding: 0 24px; }
+
+  a { color: var(--orange-hot); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  h2.section-title {
+    font-family: var(--display);
+    font-size: clamp(22px, 4vw, 28px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .section-kicker {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--orange);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-kicker::before {
+    content: "";
+    width: 22px;
+    height: 2px;
+    background: var(--orange);
+  }
+  .section-sub { color: var(--muted); margin-bottom: 34px; max-width: 60ch; }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(19, 17, 16, 0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 62px;
+  }
+  .brand {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 16.5px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand:hover { text-decoration: none; color: var(--orange-hot); }
+  .brand::before {
+    content: "";
+    width: 10px; height: 10px;
+    background: var(--orange);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+  .nav-links { display: flex; align-items: center; gap: 2px; }
+  .nav-links button {
+    font-family: inherit;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--body);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    padding: 19px 14px 17px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+  .nav-links button:hover { color: var(--ink); }
+  .nav-links button.active { color: var(--orange-hot); border-bottom-color: var(--orange); }
+  .nav-links .resume-link {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--orange-hot);
+    border: 1px solid var(--orange-line);
+    padding: 8px 16px;
+    border-radius: 8px;
+    margin-left: 14px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .nav-links .resume-link:hover { background: var(--orange); color: #131110; text-decoration: none; }
+
+  /* ---------- Page system ---------- */
+  .page { display: none; animation: fadein 0.22s ease; }
+  .page.visible { display: block; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 96px 0 84px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -180px;
+    right: -160px;
+    width: 520px;
+    height: 520px;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.14) 0%, rgba(249, 115, 22, 0) 65%);
+    pointer-events: none;
+  }
+  .hero .eyebrow {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--orange);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero .eyebrow::before {
+    content: "";
+    width: 34px;
+    height: 2px;
+    background: var(--orange);
+  }
+  .hero h1 {
+    font-family: var(--display);
+    font-size: clamp(36px, 6.5vw, 58px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.06;
+    color: var(--ink);
+    margin-bottom: 20px;
+    max-width: 17ch;
+  }
+  .hero h1 .accent { color: var(--orange-hot); }
+  .hero .role {
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .hero .creds {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .hero .tagline {
+    font-size: 18px;
+    color: var(--body);
+    max-width: 54ch;
+    margin-bottom: 34px;
+  }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 13px 26px;
+    border-radius: 9px;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-solid { background: var(--orange); color: #131110; }
+  .btn-solid:hover { background: var(--orange-hot); text-decoration: none; }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .btn-ghost:hover { border-color: var(--orange-line); color: var(--orange-hot); text-decoration: none; }
+  .hero-meta {
+    margin-top: 36px;
+    display: flex;
+    gap: 26px;
+    flex-wrap: wrap;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .hero-meta a { color: var(--muted); }
+  .hero-meta a:hover { color: var(--orange-hot); }
+
+  /* ---------- Sections ---------- */
+  section.block { padding: 68px 0; border-top: 1px solid var(--line-soft); }
+
+  /* ---------- Project cards (home) ---------- */
+  .proj-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+  .proj-card {
+    background: var(--bg-raise);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    cursor: pointer;
+    position: relative;
+    transition: border-color 0.18s ease, background 0.18s ease;
+  }
+  .proj-card::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 24px; right: auto;
+    width: 44px; height: 2px;
+    background: var(--orange);
+    opacity: 0;
+    transition: opacity 0.18s ease, width 0.18s ease;
+  }
+  .proj-card:hover { border-color: var(--orange-line); background: var(--panel); }
+  .proj-card:hover::after { opacity: 1; width: 72px; }
+  .proj-card h3 {
+    font-family: var(--display);
+    font-size: 18.5px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+  .proj-card p { color: var(--muted); font-size: 15px; flex-grow: 1; }
+  .proj-card .more { font-family: var(--mono); font-size: 13px; color: var(--orange-hot); }
+
+  .badge {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 5px;
+    align-self: flex-start;
+  }
+  .badge.active { background: var(--green-tint); color: var(--green); }
+  .badge.building { background: var(--gold-tint); color: var(--gold); }
+  .badge.planned { background: var(--orange-tint); color: var(--orange-hot); }
+  .badge.neutral { background: var(--line-soft); color: var(--muted); }
+
+  .center-cta { text-align: center; margin-top: 38px; }
+
+  /* ---------- Portfolio page ---------- */
+  .page-head { padding: 72px 0 8px; }
+  .page-head h2 {
+    font-family: var(--display);
+    font-size: clamp(30px, 5vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.028em;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .page-head p { color: var(--muted); max-width: 62ch; font-size: 17px; }
+
+  .full-proj {
+    background: var(--bg-raise);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--orange);
+    border-radius: 10px;
+    padding: 30px 32px;
+    margin-bottom: 18px;
+  }
+  .full-proj .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .full-proj h3 {
+    font-family: var(--display);
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+  .full-proj p { color: var(--body); max-width: 70ch; }
+  .full-proj .next-note {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: var(--orange-tint);
+    border-radius: 8px;
+    font-size: 14.5px;
+    color: var(--body);
+  }
+  .full-proj .next-note b { color: var(--orange-hot); font-weight: 600; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 4px 10px;
+  }
+
+  /* ---------- Roadmap timeline ---------- */
+  .roadmap-head { margin: 60px 0 6px; }
+  .phase { margin-bottom: 44px; }
+  .phase-title {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+  }
+  .phase-title h3 {
+    font-family: var(--display);
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+  }
+  .phase-title .when {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--orange);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .phase-desc { color: var(--muted); font-size: 15px; margin-bottom: 22px; max-width: 62ch; }
+
+  .timeline { position: relative; padding-left: 30px; }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 6px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: var(--line);
+  }
+  .tl-item { position: relative; padding-bottom: 26px; }
+  .tl-item:last-child { padding-bottom: 4px; }
+  .tl-item::before {
+    content: "";
+    position: absolute;
+    left: -30px; top: 7px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--faint);
+  }
+  .tl-item.next::before { border-color: var(--orange); background: var(--orange-tint); }
+  .tl-item .tl-top {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .tl-item h4 { font-size: 16.5px; font-weight: 600; color: var(--ink); }
+  .tl-item p { color: var(--muted); font-size: 15px; max-width: 64ch; margin-top: 3px; }
+  .tl-item .skills {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--orange-hot);
+    margin-top: 7px;
+  }
+
+  /* ---------- About ---------- */
+  .about-grid p { max-width: 68ch; }
+  .about-grid p + p { margin-top: 18px; }
+  .about-grid .aside { color: var(--muted); font-size: 15.5px; }
+
+  /* ---------- Technologies ---------- */
+  .tech-group { margin-bottom: 30px; }
+  .tech-group h3 {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .tech-group h3::before {
+    content: "";
+    width: 8px; height: 8px;
+    background: var(--orange);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+  .tech-tags { display: flex; flex-wrap: wrap; gap: 9px; }
+  .tech-tag {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--body);
+    background: var(--bg-raise);
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    padding: 6px 13px;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .tech-tag:hover { border-color: var(--orange-line); color: var(--orange-hot); }
+
+  /* ---------- Certifications ---------- */
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .cert-card {
+    background: var(--bg-raise);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px 22px;
+  }
+  .cert-card .name { font-weight: 600; color: var(--ink); font-size: 15.5px; }
+  .cert-card .meta { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 5px; }
+  .cert-card .meta.progress { color: var(--gold); }
+
+  /* ---------- Contact ---------- */
+  .contact-card {
+    background: var(--bg-raise);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 34px;
+    max-width: 560px;
+  }
+  .contact-card .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--line-soft);
+    flex-wrap: wrap;
+  }
+  .contact-card .row:last-child { border-bottom: none; }
+  .contact-card .k {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    border-top: 1px solid var(--line-soft);
+    padding: 36px 0 54px;
+    margin-top: 32px;
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--faint);
+  }
+  .footer-inner .links { display: flex; gap: 20px; }
+  .footer-inner a { color: var(--muted); }
+  .footer-inner a:hover { color: var(--orange-hot); }
+
+  /* Skip link for keyboard and screen-reader users */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--orange);
+    color: #131110;
+    font-weight: 600;
+    padding: 12px 20px;
+    border-radius: 0 0 8px 0;
+    z-index: 50;
+  }
+  .skip-link:focus {
+    left: 0;
+    text-decoration: none;
+  }
+
+  @media (max-width: 640px) {
+    .nav-links button { padding: 19px 8px 17px; font-size: 13px; }
+    .nav-links .resume-link { padding: 7px 12px; font-size: 13px; margin-left: 6px; }
+    .hero { padding: 64px 0 56px; }
+    section.block { padding: 50px 0; }
+    .full-proj { padding: 24px; }
+    .timeline { padding-left: 26px; }
+    .tl-item::before { left: -26px; }
+  }
+</style>
+
+<!-- Structured data: helps search engines associate this site with your name -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Matthew Donnell",
+  "url": "https://mtdonnell.com/",
+  "jobTitle": "IT Systems Engineer",
+  "description": "IT Systems Engineer focused on infrastructure, automation, and applied AI.",
+  "address": {
+    "@type": "PostalPlace",
+    "addressLocality": "St. Louis",
+    "addressRegion": "MO",
+    "addressCountry": "US"
+  },
+  "email": "mailto:matthewtdonnell@gmail.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/mdonn"
+  ],
+  "knowsAbout": [
+    "VMware ESXi",
+    "Proxmox",
+    "SQL Server Always On Availability Groups",
+    "Azure Active Directory",
+    "PowerShell",
+    "Python",
+    "Docker",
+    "Systems Integration",
+    "Information Security"
+  ],
+  "hasCredential": [
+    { "@type": "EducationalOccupationalCredential", "name": "CompTIA Security+" },
+    { "@type": "EducationalOccupationalCredential", "name": "ISC2 Certified in Cybersecurity (CC)" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to content</a>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="brand" href="#home" data-page="home">Matthew Donnell</a>
+    <div class="nav-links">
+      <button data-page="portfolio">Portfolio</button>
+      <button data-page="about">About</button>
+      <button data-page="contact">Contact</button>
+      <a class="resume-link" href="/resume.pdf" target="_blank" rel="noopener">Resume</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HOME ================= -->
+<main id="page-home" class="page visible" tabindex="-1">
+<span id="main-content"></span>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Infrastructure · Automation · Applied AI</div>
+      <h1>Hi, I'm Matthew Donnell<span class="accent">.</span></h1>
+      <div class="role">IT Systems Engineer</div>
+      <div class="creds">Security+ · ISC² CC · Azure AI-900 (in progress)</div>
+      <p class="tagline">
+        Building hands-on projects across virtualization, monitoring, AI tooling,
+        and automation, and writing about what I learn along the way.
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-solid" data-page="portfolio">View My Portfolio</button>
+        <button class="btn btn-ghost" data-page="contact">Get in Touch</button>
+      </div>
+      <div class="hero-meta">
+        <span>St. Louis, MO</span>
+        <a href="https://linkedin.com/in/mdonn" target="_blank" rel="noopener">linkedin.com/in/mdonn</a>
+        <!-- Uncomment and set your username once the repo is public:
+        <a href="https://github.com/USERNAME" target="_blank" rel="noopener">github.com/USERNAME</a>
+        -->
+      </div>
+    </div>
+  </header>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="section-kicker">Featured Projects</div>
+      <h2 class="section-title">What I'm building</h2>
+      <p class="section-sub">Active work running in my home lab right now.</p>
+      <div class="proj-grid">
+        <div class="proj-card" data-page="portfolio" role="link" tabindex="0">
+          <span class="badge active">Active</span>
+          <h3>AI-Powered IT Knowledge Base</h3>
+          <p>A self-hosted Flask app using the Claude and OpenAI APIs with agentic workflows to search and answer questions against my own technical documentation.</p>
+          <span class="more">View details →</span>
+        </div>
+        <div class="proj-card" data-page="portfolio" role="link" tabindex="0">
+          <span class="badge active">Active</span>
+          <h3>Proxmox Home Lab</h3>
+          <p>A virtualized environment for containerized services, infrastructure testing, and breaking things safely. The platform every other project runs on.</p>
+          <span class="more">View details →</span>
+        </div>
+        <div class="proj-card" data-page="portfolio" role="link" tabindex="0">
+          <span class="badge building">Building</span>
+          <h3>Obsidian Knowledge Vault</h3>
+          <p>A structured, linked vault of runbooks, lab notes, and project logs. The documentation engine behind every write-up on this site.</p>
+          <span class="more">View details →</span>
+        </div>
+      </div>
+      <div class="center-cta">
+        <button class="btn btn-ghost" data-page="portfolio">View Full Portfolio &amp; Roadmap</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="section-kicker">About Me</div>
+      <div class="about-grid" style="max-width: 720px;">
+        <p>
+          I've spent ten years in enterprise IT, starting in sales engineering and
+          working my way into hands-on systems engineering. I got into this field the
+          same way most people in it did: by taking things apart to see how they
+          worked, then learning how to put them back together better.
+        </p>
+        <p>
+          These days my focus is infrastructure, automation, and the practical side
+          of AI. I learn by building, and I've started documenting everything as I go
+          so I can actually explain what I built and why.
+        </p>
+        <div style="margin-top: 6px;">
+          <button class="btn btn-ghost" data-page="about">Read About Me</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="section-kicker">Technologies</div>
+      <h2 class="section-title">Tools and platforms</h2>
+      <p class="section-sub">What I work with, at work and in the lab.</p>
+
+      <div class="tech-group">
+        <h3>Infrastructure &amp; Virtualization</h3>
+        <div class="tech-tags">
+          <span class="tech-tag">VMware ESXi</span><span class="tech-tag">Proxmox VE</span>
+          <span class="tech-tag">Windows Server</span><span class="tech-tag">Linux</span>
+          <span class="tech-tag">LXC</span><span class="tech-tag">Failover Clustering</span>
+        </div>
+      </div>
+
+      <div class="tech-group">
+        <h3>Databases</h3>
+        <div class="tech-tags">
+          <span class="tech-tag">SQL Server</span><span class="tech-tag">Always On Availability Groups</span>
+          <span class="tech-tag">SQLite</span><span class="tech-tag">Performance Tuning</span>
+        </div>
+      </div>
+
+      <div class="tech-group">
+        <h3>Cloud &amp; Identity</h3>
+        <div class="tech-tags">
+          <span class="tech-tag">Azure AD</span><span class="tech-tag">SSO</span>
+          <span class="tech-tag">Hybrid Cloud</span>
+        </div>
+      </div>
+
+      <div class="tech-group">
+        <h3>Networking &amp; Monitoring</h3>
+        <div class="tech-tags">
+          <span class="tech-tag">PRTG</span><span class="tech-tag">VoIP / SIP</span>
+          <span class="tech-tag">Network Diagnostics</span><span class="tech-tag">RTLS</span>
+        </div>
+      </div>
+
+      <div class="tech-group">
+        <h3>Systems Integration</h3>
+        <div class="tech-tags">
+          <span class="tech-tag">HL7</span><span class="tech-tag">API Integration</span>
+          <span class="tech-tag">Enterprise Messaging</span>
+        </div>
+      </div>
+
+      <div class="tech-group">
+        <h3>Development &amp; AI</h3>
+        <div class="tech-tags">
+          <span class="tech-tag">Python</span><span class="tech-tag">Flask</span>
+          <span class="tech-tag">PowerShell</span><span class="tech-tag">Node.js</span>
+          <span class="tech-tag">Claude API</span><span class="tech-tag">OpenAI API</span>
+          <span class="tech-tag">Agentic Workflows</span><span class="tech-tag">Git</span>
+        </div>
+      </div>
+
+      <div class="tech-group">
+        <h3>Documentation</h3>
+        <div class="tech-tags">
+          <span class="tech-tag">Obsidian</span><span class="tech-tag">Markdown</span>
+          <span class="tech-tag">Technical Writing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= PORTFOLIO ================= -->
+<main id="page-portfolio" class="page">
+  <div class="wrap page-head">
+    <div class="section-kicker">Portfolio</div>
+    <h2>Built, building, and next up.</h2>
+    <p>
+      Everything here runs in my home lab. I publish the roadmap because plans you
+      say out loud are plans you actually finish. Write-ups get added as each
+      project ships.
+    </p>
+  </div>
+
+  <section class="block" style="border-top: none; padding-top: 44px;">
+    <div class="wrap">
+
+      <article class="full-proj">
+        <div class="top">
+          <h3>AI-Powered IT Knowledge Base</h3>
+          <span class="badge active">Active</span>
+        </div>
+        <p>
+          A self-hosted documentation and knowledge base app built with Flask and
+          SQLite, using the Claude and OpenAI APIs with agentic workflows to search,
+          summarize, and answer questions against my own technical documentation.
+          Runs in an Ubuntu LXC container on Proxmox. Built to solve a real problem:
+          knowledge scattered across notes, tickets, and my own head.
+        </p>
+        <div class="next-note"><b>Up next:</b> Docker migration, CI/CD with GitHub Actions, and a RAG upgrade with embeddings and vector search.</div>
+        <div class="tags">
+          <span class="tag">Flask</span><span class="tag">SQLite</span><span class="tag">Claude API</span>
+          <span class="tag">OpenAI API</span><span class="tag">Agentic Workflows</span>
+          <span class="tag">Ubuntu LXC</span><span class="tag">Proxmox</span>
+        </div>
+      </article>
+
+      <article class="full-proj">
+        <div class="top">
+          <h3>Proxmox Home Lab</h3>
+          <span class="badge active">Active</span>
+        </div>
+        <p>
+          The platform everything else runs on. A virtualized environment for testing
+          infrastructure changes, running containerized services, and breaking things
+          safely before they matter. High-availability thinking at a scale I can
+          afford to blow up.
+        </p>
+        <div class="tags">
+          <span class="tag">Proxmox VE</span><span class="tag">LXC</span><span class="tag">Linux</span>
+          <span class="tag">Virtualization</span><span class="tag">Self-Hosting</span>
+        </div>
+      </article>
+
+      <article class="full-proj">
+        <div class="top">
+          <h3>Obsidian Knowledge Vault</h3>
+          <span class="badge building">Building</span>
+        </div>
+        <p>
+          A structured, linked vault for everything I know and everything I'm learning:
+          runbooks, lab notes, project logs, and study material. Every project on this
+          page gets documented here first, then published as a write-up. The habit is
+          the project.
+        </p>
+        <div class="tags">
+          <span class="tag">Obsidian</span><span class="tag">Markdown</span><span class="tag">Documentation</span>
+        </div>
+      </article>
+
+      <article class="full-proj">
+        <div class="top">
+          <h3>Document Automation Pipeline</h3>
+          <span class="badge active">Active</span>
+        </div>
+        <p>
+          A Node.js tool that generates formatted Word documents from structured data.
+          Started as a way to stop hand-formatting the same documents over and over,
+          turned into a reusable pipeline for producing clean, consistent output
+          programmatically.
+        </p>
+        <div class="tags">
+          <span class="tag">Node.js</span><span class="tag">docx</span><span class="tag">Automation</span>
+        </div>
+      </article>
+
+      <div class="roadmap-head">
+        <div class="section-kicker">Roadmap</div>
+        <h2 class="section-title">Where this is going</h2>
+        <p class="section-sub">Three phases, each one building on the last.</p>
+      </div>
+
+      <div class="phase">
+        <div class="phase-title"><h3>Phase 1 · Foundation</h3><span class="when">In progress</span></div>
+        <p class="phase-desc">Modernizing how everything is deployed and observed.</p>
+        <div class="timeline">
+          <div class="tl-item next">
+            <div class="tl-top"><h4>Containerize the KB app with Docker + GitHub Actions</h4><span class="badge building">Next up</span></div>
+            <p>Move the knowledge base from a bare LXC install to a containerized deployment with an automated build and deploy pipeline.</p>
+            <div class="skills">Docker · CI/CD · deployment automation</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-top"><h4>Open-source monitoring stack</h4><span class="badge planned">Planned</span></div>
+            <p>Grafana and Prometheus watching every service in the lab, with alerting when things break.</p>
+            <div class="skills">Grafana · Prometheus · metrics · alerting</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-title"><h3>Phase 2 · Integration &amp; AI</h3><span class="when">Up next</span></div>
+        <p class="phase-desc">Connecting the lab to AI tooling and building integration projects worth writing about.</p>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-top"><h4>MCP server for the knowledge vault</h4><span class="badge planned">Planned</span></div>
+            <p>A Model Context Protocol server that lets AI assistants query my Obsidian vault and knowledge base directly, with access controls on what leaves the machine.</p>
+            <div class="skills">MCP · tool calling · agent architecture</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-top"><h4>HL7 integration lab with Mirth Connect</h4><span class="badge planned">Planned</span></div>
+            <p>An open-source interface engine processing simulated healthcare data feeds. Enterprise integration engineering with tooling I can actually show.</p>
+            <div class="skills">Mirth Connect · interface engineering · message transformation</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-top"><h4>Publish a PowerShell module</h4><span class="badge planned">Planned</span></div>
+            <p>A SQL Server availability group health-check toolkit, packaged properly and published to GitHub so the code speaks for itself.</p>
+            <div class="skills">Module packaging · public code · Git workflow</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-title"><h3>Phase 3 · Depth</h3><span class="when">Later</span></div>
+        <p class="phase-desc">Security engineering and real retrieval architecture.</p>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-top"><h4>Wazuh SIEM deployment</h4><span class="badge planned">Planned</span></div>
+            <p>Security monitoring across the lab: log collection, file integrity monitoring, and custom detection rules. Security+ knowledge put into practice.</p>
+            <div class="skills">SIEM · detection engineering · log analysis</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-top"><h4>RAG upgrade for the knowledge base</h4><span class="badge planned">Planned</span></div>
+            <p>Embeddings, vector search, and retrieval evaluation. Moving the KB app from API calls to a real retrieval architecture.</p>
+            <div class="skills">Embeddings · vector search · retrieval evaluation</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-top"><h4>Azure hybrid lab</h4><span class="badge planned">Planned</span></div>
+            <p>Connecting the Proxmox lab to Azure and extending identity and SSO experience into hybrid infrastructure territory.</p>
+            <div class="skills">Azure Arc · hybrid networking · cloud architecture</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!-- ================= ABOUT ================= -->
+<main id="page-about" class="page">
+  <div class="wrap page-head">
+    <div class="section-kicker">About Me</div>
+    <h2>Curiosity, then a career.</h2>
+  </div>
+  <section class="block" style="border-top: none; padding-top: 36px;">
+    <div class="wrap about-grid">
+      <p>
+        I got into technology the way most people in this field did: by taking things
+        apart to see how they worked, then learning how to put them back together
+        better. That curiosity turned into a ten-year career in enterprise IT.
+      </p>
+      <p>
+        I started on the sales engineering side at Ricoh, designing and demonstrating
+        enterprise software solutions for large clients. Those years taught me
+        discovery, requirements gathering, and how to explain complex systems to
+        people who don't live in them. Then I moved into hands-on systems engineering,
+        where I now design and support high-availability infrastructure: virtualization,
+        SQL Server availability groups, identity, integrations, and the monitoring
+        that keeps it all honest.
+      </p>
+      <p>
+        These days my focus is infrastructure, automation, and the practical side of
+        AI. My home lab is where I test ideas, build tools I actually use, and pick up
+        skills my day job doesn't hand me. I've started documenting everything as I
+        go, because a project I can't explain is a project I only half understand.
+      </p>
+      <p class="aside">
+        Outside of work: two kids, a home lab that is always one project deeper than
+        planned, and an unreasonable amount of emotional investment in Mizzou and the
+        Cardinals.
+      </p>
+    </div>
+  </section>
+  <section class="block">
+    <div class="wrap">
+      <div class="section-kicker">Certifications</div>
+      <h2 class="section-title">Earned and in progress</h2>
+      <div class="cert-grid" style="margin-top: 24px;">
+        <div class="cert-card">
+          <div class="name">CompTIA Security+</div>
+          <div class="meta">Issued February 2024</div>
+        </div>
+        <div class="cert-card">
+          <div class="name">ISC² Certified in Cybersecurity</div>
+          <div class="meta">Issued April 2024</div>
+        </div>
+        <div class="cert-card">
+          <div class="name">Rauland Platform Certifications ×3</div>
+          <div class="meta">Enterprise communication systems</div>
+        </div>
+        <div class="cert-card">
+          <div class="name">Microsoft Azure AI Fundamentals</div>
+          <div class="meta progress">AI-900 · In progress</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= CONTACT ================= -->
+<main id="page-contact" class="page">
+  <div class="wrap page-head">
+    <div class="section-kicker">Contact</div>
+    <h2>Get in touch.</h2>
+    <p>Open to conversations about infrastructure, solutions engineering, and interesting technical problems. Email or LinkedIn gets the fastest response.</p>
+  </div>
+  <section class="block" style="border-top: none; padding-top: 40px;">
+    <div class="wrap">
+      <div class="contact-card">
+        <div class="row"><span class="k">Email</span><a href="mailto:matthewtdonnell@gmail.com">matthewtdonnell@gmail.com</a></div>
+        <div class="row"><span class="k">LinkedIn</span><a href="https://linkedin.com/in/mdonn" target="_blank" rel="noopener">linkedin.com/in/mdonn</a></div>
+        <!-- Uncomment and set your username once the repo is public:
+        <div class="row"><span class="k">GitHub</span><a href="https://github.com/USERNAME" target="_blank" rel="noopener">github.com/USERNAME</a></div>
+        -->
+        <div class="row"><span class="k">Location</span><span>St. Louis, MO</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>&copy; <span id="year">2026</span> Matthew Donnell &nbsp;·&nbsp; Last updated August 2026</span>
+    <div class="links">
+      <a href="mailto:matthewtdonnell@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/mdonn" target="_blank" rel="noopener">LinkedIn</a>
+      <!-- <a href="https://github.com/USERNAME/mtdonnell.com" target="_blank" rel="noopener">Source</a> -->
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const pages = ["home", "portfolio", "about", "contact"];
+  function showPage(name) {
+    if (!pages.includes(name)) name = "home";
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("visible"));
+    document.getElementById("page-" + name).classList.add("visible");
+    document.querySelectorAll(".nav-links button").forEach(b =>
+      b.classList.toggle("active", b.dataset.page === name)
+    );
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }
+  document.addEventListener("click", (e) => {
+    const target = e.target.closest("[data-page]");
+    if (!target) return;
+    e.preventDefault();
+    const name = target.dataset.page;
+    history.pushState(null, "", "#" + name);
+    showPage(name);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter") return;
+    const target = e.target.closest(".proj-card[data-page]");
+    if (!target) return;
+    history.pushState(null, "", "#" + target.dataset.page);
+    showPage(target.dataset.page);
+  });
+  window.addEventListener("popstate", () => showPage(location.hash.slice(1)));
+  showPage(location.hash.slice(1) || "home");
+</script>
+
+</body>
+</html>

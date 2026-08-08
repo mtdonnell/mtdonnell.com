@@ -1,0 +1,10 @@
+# Cloudflare Pages redirects
+# Ported from netlify.toml. Order matters: first match wins.
+
+# Vanity short links for a resume or email signature.
+/resume    /resume.pdf                        302
+/linkedin  https://www.linkedin.com/in/mdonn  302
+
+# Catch-all: unknown paths render the homepage rather than a bare 404.
+# Remove this once real multi-page routes and a 404.html exist.
+/*  /index.html  200

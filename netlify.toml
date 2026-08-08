@@ -1,0 +1,64 @@
+# Netlify configuration for mtdonnell.com
+# No build step: this is a plain static site, so Netlify just publishes the folder.
+
+[build]
+  publish = "."
+  command = ""
+
+# ---------------------------------------------------------------
+# Security headers
+# Applied to every response. These are what security scanners and
+# some recruiters' IT teams look for. Cheap to add, good signal.
+# ---------------------------------------------------------------
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    Content-Security-Policy = "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+
+# ---------------------------------------------------------------
+# Caching
+# Hashed/static assets can cache hard. HTML must revalidate so your
+# edits actually show up for people who visited before.
+# ---------------------------------------------------------------
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/resume.pdf"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+    Content-Disposition = "inline; filename=\"Matthew-Donnell-Resume.pdf\""
+
+# ---------------------------------------------------------------
+# Redirects
+# Vanity short links you can put on a resume or in an email signature.
+# ---------------------------------------------------------------
+[[redirects]]
+  from = "/resume"
+  to = "/resume.pdf"
+  status = 302
+
+[[redirects]]
+  from = "/linkedin"
+  to = "https://www.linkedin.com/in/mdonn"
+  status = 302
+  force = true
+
+# Catch-all: send unknown paths to the homepage instead of a bare 404.
+# Remove this once you add real multi-page routes and a custom 404.html.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

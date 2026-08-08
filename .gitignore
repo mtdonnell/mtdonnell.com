@@ -1,0 +1,20 @@
+# OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Netlify
+.netlify/
+
+# Node (only if you later add a build step)
+node_modules/
+npm-debug.log*
+
+# Local env
+.env
+.env.local
