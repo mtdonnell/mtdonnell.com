@@ -973,15 +973,23 @@
       <article class="full-proj">
         <div class="top"><h3>Monitoring the dependency, not the host</h3></div>
         <p>
-          The default way to monitor a server is to ask whether it answers. That
-          confirms the host is alive; it says nothing about whether the system is doing
-          its job. In a multi-site clinical communications platform, messaging depends
-          on SQL Server Service Broker queues, which means a server can pass every ping
-          check while message delivery has quietly stopped. I built PRTG sensors against
-          the components those solutions actually depend on: Service Broker monitors and
-          availability checks, rather than reachability alone. In a clinical setting the
-          distinction isn't academic. "The server is up" and "the nurse call routed" are
-          different statements.
+          We were monitoring patient activity. The trouble with watching the output is
+          that it can't distinguish a quiet ward from a broken pipeline &mdash; both look
+          like no data.
+        </p>
+        <p>
+          Nurse call data arrives raw and has to be translated into the activity table,
+          and SQL Server Service Broker performs that translation. When Service Broker
+          fails, the raw data keeps arriving and the activity table simply stops filling.
+          Every host still answers its ping. The activity view just looks like a slow
+          night.
+        </p>
+        <p>
+          So I moved monitoring off the output and onto the mechanism: PRTG sensors
+          against Service Broker itself and against availability group health, so an
+          alert fires when translation stops rather than when someone eventually notices
+          the numbers look wrong. Monitoring the result tells you something is wrong,
+          late. Monitoring the dependency tells you what broke, now.
         </p>
         <div class="tags">
           <span class="tag">PRTG</span><span class="tag">SQL Service Broker</span>
@@ -990,14 +998,24 @@
       </article>
 
       <article class="full-proj">
-        <div class="top"><h3>A repeatable availability topology</h3></div>
+        <div class="top"><h3>Retiring a tier that wasn't earning its place</h3></div>
         <p>
-          I designed the SQL Server Always On availability group setup for the
-          multi-site clinical communications deployments I've implemented. The goal was
-          that each site got the same architecture rather than a bespoke build shaped by
-          whoever happened to be on site that week. Repeatability is what makes an
-          environment supportable by someone who wasn't there when it was built, and
-          it's most of the difference between an installation and an architecture.
+          One inherited environment ran three database roles across three SQL Servers,
+          with an asynchronous replica standing by for disaster recovery. It worked. But
+          the DR tier carried real cost and ongoing complexity for a recovery scenario
+          that environment didn't actually need.
+        </p>
+        <p>
+          The architecture I designed instead pairs two SQL Servers for the transactional
+          tier and two for the warehouse tier, and drops the asynchronous DR portion
+          entirely.
+        </p>
+        <p>
+          Removing infrastructure is a harder call than adding it. You have to be right
+          about what the system genuinely requires, and you own the outcome if you're
+          wrong. Standardizing on one shape across deployments is also what makes an
+          environment supportable by someone who wasn't there when it was built &mdash;
+          most of the difference between an installation and an architecture.
         </p>
         <div class="tags">
           <span class="tag">SQL Server</span><span class="tag">Always On Availability Groups</span>
@@ -1006,33 +1024,53 @@
       </article>
 
       <article class="full-proj">
-        <div class="top"><h3>Getting off an unsupported hypervisor</h3></div>
+        <div class="top"><h3>Stepping a host fleet off end-of-support</h3></div>
         <p>
-          I contributed to migrating our server environment off VMware ESXi 5.5 onto 6.5
-          and later. Running past end-of-support usually gets filed as technical debt.
-          In an environment supporting clinical operations it's closer to a risk
-          decision, because the fallback position when something breaks is "no vendor
-          support" during a window when the systems have to stay available anyway.
+          I was responsible for upgrading our hosts off VMware ESXi 5.5. There's no
+          direct path from 5.5 to current, so it ran as a stepped upgrade &mdash; 5.5 to
+          6, then 6.5, then 7 on a subset of hosts &mdash; migrating VMs between hosts as
+          capacity freed up.
+        </p>
+        <p>
+          It ran inside an eight-hour downtime window, which in an environment supporting
+          clinical operations is the constraint every other decision bends around. Most
+          of that window went on problems that appear in no upgrade guide: getting Dell
+          OpenManage onto the hosts, and fighting VIB installation scripts.
+        </p>
+        <p>
+          What I took from it is that the upgrade path is the easy part to plan. The
+          vendor tooling around it is what actually consumes the window, and that's what
+          the estimate needs to be built on.
         </p>
         <div class="tags">
-          <span class="tag">VMware ESXi</span><span class="tag">Migration</span>
-          <span class="tag">Lifecycle Management</span><span class="tag">Risk</span>
+          <span class="tag">VMware ESXi</span><span class="tag">Staged Upgrade</span>
+          <span class="tag">VM Migration</span><span class="tag">Dell OpenManage</span>
+          <span class="tag">Lifecycle Management</span>
         </div>
       </article>
 
       <article class="full-proj">
-        <div class="top"><h3>Renumbering without breaking failover</h3></div>
+        <div class="top"><h3>Re-IPing a clinical stack into a new subnet</h3></div>
         <p>
-          I reconfigured availability group environments after IP migrations. On paper
-          that's a change of address. In practice the listener IP, the cluster resource,
-          and DNS all have to move together, and an availability group that comes back
-          in a partly-migrated state can report healthy while failover is quietly
-          broken. That's the worst version of the failure, because nobody finds out
-          until the day it's needed.
+          When the hosts moved, they moved to an entirely new subnet. I was responsible
+          for re-IPing everything that lived on the old one: the failover clusters, the
+          availability group environment, the full clinical communications stack, and the
+          NetScaler load balancer sitting in front of it.
+        </p>
+        <p>
+          This is unforgiving work because the pieces reference each other. Listener IPs,
+          cluster resources, DNS, and the load balancer's backend definitions all have to
+          move together, and a stack that comes back in a partly-migrated state can
+          report healthy while failover is quietly broken &mdash; the worst version of
+          the failure, because nobody finds out until the day it's needed.
+        </p>
+        <p>
+          Everything came back online.
         </p>
         <div class="tags">
           <span class="tag">Always On Availability Groups</span><span class="tag">WSFC</span>
-          <span class="tag">DNS</span><span class="tag">Network Migration</span>
+          <span class="tag">NetScaler</span><span class="tag">DNS</span>
+          <span class="tag">Network Migration</span>
         </div>
       </article>
     </div>
