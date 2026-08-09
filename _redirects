@@ -5,9 +5,16 @@
 /resume    /resume.pdf                        302
 /linkedin  https://www.linkedin.com/in/mdonn  302
 
+# The nav reads "Portfolio" / "About" / "Contact", but the tabs are hash-routed,
+# so the real addresses carry a "#". Anyone typing the path directly — or any
+# client that drops the fragment from a link — would otherwise hit a 404.
+/about      /#about      302
+/portfolio  /#portfolio  302
+/contact    /#contact    302
+
+# Anything else falls through to 404.html, which Cloudflare serves automatically.
+#
 # NOTE: no `/* /index.html 200` catch-all here.
-# Netlify needs that line for SPA fallback. Cloudflare Pages rejects it
-# (error 100324, infinite loop) because Pages already strips `.html` and
-# `/index` itself, so the rule re-triggers on its own output.
-# Not needed regardless: navigation on this site is hash-based, so only
-# `/`, `/resume.pdf` and `/assets/*` ever reach the server.
+# Netlify needs that line for SPA fallback. Cloudflare rejects it (error 100324,
+# infinite loop) because Pages already strips `.html` and `/index` itself, so the
+# rule re-triggers on its own output and fails the deploy.

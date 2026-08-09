@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 — Not Found | Matthew Donnell</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#F97316">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/assets/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #131110;
+    --panel: #0E0C0B;
+    --line: #2E2A25;
+    --line-soft: #262220;
+    --ink: #F2EEE8;
+    --body: #BDB6AC;
+    --muted: #8D867B;
+    --faint: #6B655C;
+    --orange: #F97316;
+    --orange-hot: #FB923C;
+    --orange-line: rgba(249, 115, 22, 0.35);
+    --green: #4ADE80;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+    --display: "Sora", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+  ::selection { background: var(--orange); color: #131110; }
+  body {
+    background: var(--bg);
+    color: var(--body);
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 16.5px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a { color: var(--orange-hot); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  nav { border-bottom: 1px solid var(--line-soft); }
+  .nav-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 62px;
+    display: flex;
+    align-items: center;
+  }
+  .brand {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 16.5px;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand:hover { text-decoration: none; color: var(--orange-hot); }
+  .brand::before {
+    content: "";
+    width: 10px; height: 10px;
+    background: var(--orange);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px 80px;
+  }
+  .box { max-width: 620px; width: 100%; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--orange);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 34px; height: 2px;
+    background: var(--orange);
+  }
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(38px, 8vw, 62px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  h1 .dot { color: var(--orange-hot); }
+  .lede { color: var(--body); margin-bottom: 30px; max-width: 52ch; }
+
+  .term {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.62;
+    padding: 16px 18px;
+    margin-bottom: 32px;
+    overflow-x: auto;
+  }
+  .term div { white-space: pre; }
+  .term .prompt { color: var(--green); }
+  .term .cmd { color: var(--ink); }
+  .term .err { color: #F87171; }
+  .term .hint { color: var(--faint); }
+
+  .actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 13px 26px;
+    border-radius: 9px;
+    display: inline-block;
+    font-family: inherit;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+  .btn:hover { text-decoration: none; }
+  .btn-solid { background: var(--orange); color: #131110; }
+  .btn-solid:hover { background: var(--orange-hot); }
+  .btn-ghost { color: var(--ink); border: 1px solid var(--line); }
+  .btn-ghost:hover { border-color: var(--orange-line); color: var(--orange-hot); }
+
+  footer {
+    border-top: 1px solid var(--line-soft);
+    padding: 26px 24px 34px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--faint);
+    text-align: center;
+  }
+
+  @media (max-width: 640px) {
+    main { padding: 40px 20px 60px; }
+    .term { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="/">Matthew Donnell</a>
+  </div>
+</nav>
+
+<main>
+  <div class="box">
+    <div class="eyebrow">Error 404</div>
+    <h1>This page doesn't exist<span class="dot">.</span></h1>
+    <p class="lede">
+      Which is a shame, because everything else here does. Most likely a mistyped
+      address or a link that lost its fragment on the way to you.
+    </p>
+
+    <div class="term" role="img" aria-label="A terminal showing that the requested path was not found">
+      <div><span class="prompt">matt@mtdonnell:~$</span> <span class="cmd">cat <span id="path">/unknown</span></span></div>
+      <div><span class="err">cat: no such file or directory</span></div>
+      <div><span class="hint">try: /  ·  /#portfolio  ·  /#about  ·  /#contact</span></div>
+    </div>
+
+    <div class="actions">
+      <a class="btn btn-solid" href="/">Back to the homepage</a>
+      <a class="btn btn-ghost" href="/#portfolio">View the portfolio</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  &copy; <span id="year">2026</span> Matthew Donnell
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+  // textContent, never innerHTML — the path is attacker-controlled.
+  var p = location.pathname + location.search;
+  if (p && p !== "/") {
+    document.getElementById("path").textContent = p.length > 48 ? p.slice(0, 48) + "…" : p;
+  }
+</script>
+
+</body>
+</html>
