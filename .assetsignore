@@ -1,0 +1,15 @@
+# Files in this repo that must NOT be uploaded as public site assets.
+#
+# Cloudflare uploads the repo root as static assets. Without this list, .git/
+# is served publicly — /.git/config and /.git/index were both reachable, which
+# is the classic exposed-repository misconfiguration that lets tooling
+# reconstruct the whole repo. Nothing secret is in there (the repo is public),
+# but it should not be served, and it would become a real leak the moment this
+# repo goes private.
+
+.git
+.gitignore
+.gitattributes
+.assetsignore
+wrangler.jsonc
+README.md

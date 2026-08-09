@@ -1,0 +1,19 @@
+{
+  // Static-assets-only Worker. No server-side script; Cloudflare serves the
+  // repo root directly. Values here mirror what the dashboard already had, so
+  // adding this file changes exactly one behaviour: not_found_handling.
+  "name": "mtdonnell-com",
+  "compatibility_date": "2026-08-09",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".",
+
+    // Default is "none", which returns a 404 with a zero-length body — a blank
+    // white page. "404-page" serves /404.html instead.
+    //
+    // Do NOT use "single-page-application": it rewrites every unmatched path to
+    // index.html with a 200, which is the behaviour the old netlify.toml
+    // catch-all provided and which Cloudflare rejects as an infinite loop.
+    "not_found_handling": "404-page"
+  }
+}
