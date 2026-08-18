@@ -771,10 +771,12 @@
       <div class="section-kicker">About Me</div>
       <div class="about-grid" style="max-width: 720px;">
         <p>
-          Fifteen years ago I was an administrative assistant for Jefferson County.
-          Today I design the high-availability infrastructure behind clinical
-          communication systems. The path between ran through a help desk, a channel
-          support role, and a lot of nights taking things apart to see how they worked.
+          I grew up in Jefferson County, Missouri, planning on sports, until a Compaq
+          Presario and a dial-up connection took over in sixth grade. Today I design the
+          high-availability infrastructure behind clinical communication systems. The
+          path between ran through a county admin desk where I was the only person
+          fixing anything with a plug on it, then a help desk, then into IT without a
+          degree — which I went back for afterward.
         </p>
         <p>
           These days my focus is infrastructure, automation, and the practical side
@@ -1129,16 +1131,43 @@
 <main id="page-about" class="page">
   <div class="wrap page-head">
     <div class="section-kicker">About Me</div>
-    <h2>From a county desk to high availability.</h2>
+    <h2>From dial-up to high availability.</h2>
   </div>
   <section class="block" style="border-top: none; padding-top: 36px;">
     <div class="wrap about-grid">
       <p>
-        Fifteen years ago I was an administrative assistant for Jefferson County,
-        Missouri. Today I design the high-availability infrastructure behind clinical
-        communication systems. The path between those two things ran through a help
-        desk, a channel support role, and a lot of nights taking things apart to see how
-        they worked.
+        I grew up in Jefferson County, Missouri, and for most of that time the plan was
+        sports. Basketball, baseball, football, whichever season it happened to be. That
+        was the shape of the year.
+      </p>
+      <p>
+        Then a Compaq Presario turned up in the house in sixth grade, and that became
+        the thing I did instead. It ran on dial-up, which made the internet something
+        the whole house negotiated over. One phone call was enough to drop the
+        connection and take the afternoon with it. If you wanted anything to work, you
+        learned to wait, and you learned to understand what you were waiting on.
+      </p>
+      <p>
+        I have thought about that machine more than once since. Most of what I do now is
+        a version of the same problem: a system people depend on, failing in a way nobody
+        warned them about, where the fix starts with understanding the mechanism instead
+        of the symptom.
+      </p>
+      <p>
+        I always knew I wanted to end up in IT. The way in turned out to be an
+        administrative assistant job at Jefferson County government, which is not a
+        route anyone would draw on a whiteboard. There was no on-site IT, so anything
+        with a plug on it eventually became mine: the phones, the printers, the county
+        website. Being the person everyone walks to when something is broken is its own
+        kind of training, and you learn fast because nobody else is coming.
+      </p>
+      <p>
+        That was enough to land an IT job without a degree, which is backwards from how
+        it is usually done. I have been working full time since I turned eighteen, so
+        the education happened around a forty-hour week the entire way. The associate's
+        took a while. The bachelor's landed in 2018, seven years after high school, by
+        which point I was already three years into the next job. Studying things I had
+        first had to solve at work turned out to be a reasonable way to learn them.
       </p>
       <p>
         I joined Ricoh in 2015 as a support analyst and spent nine years there. I moved
@@ -1163,6 +1192,13 @@
         everything as I go, because a project I can't explain is a project I only half
         understand.
       </p>
+      <p>
+        If there is a thread through all of it, it is that I have never been especially
+        interested in whether a problem is technically mine. Someone has to find the
+        answer, and I would rather it be me than nobody. Most things come apart
+        eventually if you are willing to keep going after the obvious explanations have
+        run out.
+      </p>
       <p class="aside">
         Outside of work: two kids, a home lab that is always one project deeper than
         planned, and an unreasonable amount of emotional investment in Mizzou and the
@@ -1170,121 +1206,6 @@
       </p>
     </div>
   </section>
-  <section class="block">
-    <div class="wrap">
-      <div class="section-kicker">Architecture</div>
-      <h2 class="section-title">Decisions I owned</h2>
-      <p class="section-sub">
-        The reasoning matters more than the deployment. Client and site details are
-        deliberately generic.
-      </p>
-
-      <article class="full-proj">
-        <div class="top"><h3>Monitoring the dependency, not the host</h3></div>
-        <p>
-          We were monitoring patient activity. The trouble with watching the output is
-          that it can't distinguish a quiet ward from a broken pipeline &mdash; both look
-          like no data.
-        </p>
-        <p>
-          Nurse call data arrives raw and has to be translated into the activity table,
-          and SQL Server Service Broker performs that translation. When Service Broker
-          fails, the raw data keeps arriving and the activity table simply stops filling.
-          Every host still answers its ping. The activity view just looks like a slow
-          night.
-        </p>
-        <p>
-          So I moved monitoring off the output and onto the mechanism: PRTG sensors
-          against Service Broker itself and against availability group health, so an
-          alert fires when translation stops rather than when someone eventually notices
-          the numbers look wrong. Monitoring the result tells you something is wrong,
-          late. Monitoring the dependency tells you what broke, now.
-        </p>
-        <div class="tags">
-          <span class="tag">PRTG</span><span class="tag">SQL Service Broker</span>
-          <span class="tag">Availability Monitoring</span><span class="tag">Failure-mode design</span>
-        </div>
-      </article>
-
-      <article class="full-proj">
-        <div class="top"><h3>Retiring a tier that wasn't earning its place</h3></div>
-        <p>
-          One inherited environment ran three database roles across three SQL Servers,
-          with an asynchronous replica standing by for disaster recovery. It worked. But
-          the DR tier carried real cost and ongoing complexity for a recovery scenario
-          that environment didn't actually need.
-        </p>
-        <p>
-          The architecture I designed instead pairs two SQL Servers for the transactional
-          tier and two for the warehouse tier, and drops the asynchronous DR portion
-          entirely.
-        </p>
-        <p>
-          Removing infrastructure is a harder call than adding it. You have to be right
-          about what the system genuinely requires, and you own the outcome if you're
-          wrong. Standardizing on one shape across deployments is also what makes an
-          environment supportable by someone who wasn't there when it was built &mdash;
-          most of the difference between an installation and an architecture.
-        </p>
-        <div class="tags">
-          <span class="tag">SQL Server</span><span class="tag">Always On Availability Groups</span>
-          <span class="tag">Failover Clustering</span><span class="tag">Standardization</span>
-        </div>
-      </article>
-
-      <article class="full-proj">
-        <div class="top"><h3>Stepping a host fleet off end-of-support</h3></div>
-        <p>
-          I was responsible for upgrading our hosts off VMware ESXi 5.5. There's no
-          direct path from 5.5 to current, so it ran as a stepped upgrade &mdash; 5.5 to
-          6, then 6.5, then 7 on a subset of hosts &mdash; migrating VMs between hosts as
-          capacity freed up.
-        </p>
-        <p>
-          It ran inside an eight-hour downtime window, which in an environment supporting
-          clinical operations is the constraint every other decision bends around. Most
-          of that window went on problems that appear in no upgrade guide: getting Dell
-          OpenManage onto the hosts, and fighting VIB installation scripts.
-        </p>
-        <p>
-          What I took from it is that the upgrade path is the easy part to plan. The
-          vendor tooling around it is what actually consumes the window, and that's what
-          the estimate needs to be built on.
-        </p>
-        <div class="tags">
-          <span class="tag">VMware ESXi</span><span class="tag">Staged Upgrade</span>
-          <span class="tag">VM Migration</span><span class="tag">Dell OpenManage</span>
-          <span class="tag">Lifecycle Management</span>
-        </div>
-      </article>
-
-      <article class="full-proj">
-        <div class="top"><h3>Re-IPing a clinical stack into a new subnet</h3></div>
-        <p>
-          When the hosts moved, they moved to an entirely new subnet. I was responsible
-          for re-IPing everything that lived on the old one: the failover clusters, the
-          availability group environment, the full clinical communications stack, and the
-          NetScaler load balancer sitting in front of it.
-        </p>
-        <p>
-          This is unforgiving work because the pieces reference each other. Listener IPs,
-          cluster resources, DNS, and the load balancer's backend definitions all have to
-          move together, and a stack that comes back in a partly-migrated state can
-          report healthy while failover is quietly broken &mdash; the worst version of
-          the failure, because nobody finds out until the day it's needed.
-        </p>
-        <p>
-          Everything came back online.
-        </p>
-        <div class="tags">
-          <span class="tag">Always On Availability Groups</span><span class="tag">WSFC</span>
-          <span class="tag">NetScaler</span><span class="tag">DNS</span>
-          <span class="tag">Network Migration</span>
-        </div>
-      </article>
-    </div>
-  </section>
-
   <section class="block">
     <div class="wrap">
       <div class="section-kicker">Certifications</div>
