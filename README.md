@@ -105,9 +105,6 @@ move it from the roadmap to a project card and change the badge to `active`.
 **Keep `resume.pdf` current.** The nav button, the `/resume` redirect, and a
 `Content-Disposition` header all point at it.
 
-**Update the footer date.** `index.html` has a hardcoded "Last updated" string in the
-footer. Change it when you make a meaningful update. The copyright year updates itself.
-
 **Update `sitemap.xml`** whenever you add a page — add a `<url>` block and refresh
 `<lastmod>`.
 
