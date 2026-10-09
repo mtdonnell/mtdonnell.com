@@ -98,10 +98,6 @@ hosting. Leave them alone.
 
 ## Maintenance notes
 
-**Keep the roadmap honest.** The Portfolio page publishes a public roadmap. That is
-an asset when it's current and a liability when it's stale. When you ship something,
-move it from the roadmap to a project card and change the badge to `active`.
-
 **Keep `resume.pdf` current.** The nav button, the `/resume` redirect, and a
 `Content-Disposition` header all point at it.
 
