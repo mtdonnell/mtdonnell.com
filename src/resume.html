@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Matthew Donnell - Resume</title>
+<!--
+  Source for /resume.pdf. Not served (see .assetsignore).
+  Rebuild from the repo root with headless Chrome:
+    chrome --headless --disable-gpu --no-pdf-header-footer \
+           --print-to-pdf=resume.pdf src/resume.html
+-->
+<style>
+  @page { size: Letter; margin: 0.55in 0.65in; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 9.8pt;
+    line-height: 1.33;
+    color: #1a1a1a;
+  }
+  h1 {
+    font-size: 23pt;
+    color: #1F4E79;
+    text-align: center;
+    margin-bottom: 5pt;
+  }
+  .contact { text-align: center; color: #555; font-size: 9.5pt; margin-bottom: 13pt; }
+  .contact a { color: inherit; text-decoration: none; }
+  h2 {
+    font-size: 11.5pt;
+    color: #1F4E79;
+    text-transform: uppercase;
+    border-bottom: 1.2pt solid #1F4E79;
+    padding-bottom: 2pt;
+    margin: 12pt 0 5pt;
+    break-after: avoid;
+  }
+  p.skill { margin-bottom: 3.5pt; }
+  .job { margin-top: 7pt; }
+  li { break-inside: avoid; }
+  .job-head { margin-bottom: 2pt; break-after: avoid; }
+  .job-head .org { color: #666; }
+  .job-head .when { color: #666; font-style: italic; }
+  ul { list-style: disc; padding-left: 13pt; }
+  li { margin-bottom: 2.5pt; }
+  .note { color: #555; font-size: 9.5pt; margin-bottom: 4pt; }
+  .note a { color: inherit; text-decoration: none; }
+  .edu { margin-bottom: 2.5pt; }
+  .edu .org { color: #666; }
+</style>
+</head>
+<body>
+
+<h1>Matthew Donnell</h1>
+<div class="contact">
+  Greater St. Louis, MO &nbsp;|&nbsp; <a href="mailto:matthewtdonnell@gmail.com">matthewtdonnell@gmail.com</a> &nbsp;|&nbsp;
+  <a href="https://linkedin.com/in/mdonn">linkedin.com/in/mdonn</a> &nbsp;|&nbsp;
+  <a href="https://github.com/mtdonnell">github.com/mtdonnell</a> &nbsp;|&nbsp;
+  <a href="https://mtdonnell.com">mtdonnell.com</a>
+</div>
+
+<h2>Professional Summary</h2>
+<p>
+  IT Systems Engineer III with 11 years of experience designing, supporting, and troubleshooting complex technical
+  environments across healthcare and enterprise settings. Senior technical authority and architect for clinical healthcare
+  IT systems, with depth in high-availability design (SQL Server Always On, Windows failover clustering), virtualization
+  (VMware ESXi and vCenter), Windows Server, networking, and Azure. Builds and runs agentic AI workflows and
+  automations with the Claude API, Claude Code, and Codex, including multi-agent pipelines and self-hosted AI services.
+  Holds CompTIA Security+ and ISC2 Certified in Cybersecurity.
+</p>
+
+<h2>Technical Skills</h2>
+<p class="skill"><b>AI &amp; Automation:</b> Claude API, Claude Code, Codex, Microsoft Copilot, Model Context Protocol (MCP) connectors, multi-agent orchestration, prompt design, agentic workflow development</p>
+<p class="skill"><b>Scripting &amp; Development:</b> Python, Flask, PowerShell automation, Node.js, SQLite, Git, Docker, Playwright browser automation, pytest, Cloudflare Workers</p>
+<p class="skill"><b>Virtualization &amp; OS:</b> VMware ESXi, vSphere, vCenter, Proxmox VE, staged host upgrades, VM migration, Windows Server (advanced), Linux (foundational)</p>
+<p class="skill"><b>High Availability &amp; Databases:</b> MSSQL / SQL Server, Always On Availability Groups, Windows Server Failover Clustering, disaster recovery design, performance tuning</p>
+<p class="skill"><b>Networking &amp; Cloud:</b> VLANs, subnet migration and re-addressing, DHCP, DNS, firewall rules, TCP/IP, load balancing, VoIP/SIP, Azure / Entra ID / SSO, hybrid cloud</p>
+<p class="skill"><b>Monitoring &amp; Ticketing:</b> PRTG including service-dependency and availability sensor design, ServiceNow</p>
+<p class="skill"><b>Documentation:</b> Technical SOPs, runbooks, architecture diagrams</p>
+<p class="skill"><b>Professional:</b> Cross-functional collaboration, stakeholder communication, mentoring, multi-project management</p>
+
+<h2>Professional Experience</h2>
+
+<div class="job">
+  <div class="job-head"><b>IT Systems Engineer III</b> <span class="org">| Primary Systems, Inc.</span> &nbsp;<span class="when">August 2026 &ndash; Present | Remote</span></div>
+  <ul>
+    <li>Senior technical authority and architect for clinical healthcare IT systems, responsible for the design and implementation of enterprise high-availability solutions with disaster recovery capability.</li>
+    <li>Highest point of technical escalation for complex issues across nurse call, voice and messaging, RTLS, EHR/HL7, and data solutions.</li>
+    <li>Provide strategic direction and long-term infrastructure roadmaps, partnering with executive leadership, clinical staff, and external technology partners.</li>
+    <li>Mentor engineers across tiers and develop technical training material and documentation standards.</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-head"><b>IT Systems Engineer II</b> <span class="org">| Primary Systems, Inc.</span> &nbsp;<span class="when">July 2025 &ndash; August 2026 | Remote</span></div>
+  <ul>
+    <li>Designed the SQL Server Always On Availability Group topology for multi-site clinical communications deployments, standardizing on paired transactional and warehouse tiers and retiring an asynchronous disaster-recovery tier the environment did not require.</li>
+    <li>Redesigned platform monitoring around service dependencies rather than host reachability, building PRTG sensors against SQL Server Service Broker translation and availability group health. Closed a gap where activity-based monitoring could not distinguish a low-volume period from a stalled data pipeline.</li>
+    <li>Led a staged VMware ESXi upgrade from 5.5 through 6, 6.5, and 7, migrating virtual machines between hosts inside an eight-hour clinical downtime window while resolving Dell OpenManage deployment and VIB installation failures.</li>
+    <li>Re-addressed a full clinical communications environment onto a new subnet, including failover clusters, availability group listeners, application infrastructure, and load balancer configuration, and restored all services to operation.</li>
+    <li>Provisioned and maintained high-availability virtualized environments across VMware ESXi and Windows Server, performing configuration, validation testing, and failover verification across multi-site hospital environments.</li>
+    <li>Documented troubleshooting procedures, system configurations, and SOPs supporting team knowledge transfer and process consistency.</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-head"><b>IT Systems Engineer I</b> <span class="org">| Primary Systems, Inc.</span> &nbsp;<span class="when">June 2024 &ndash; July 2025 | Remote</span></div>
+  <ul>
+    <li>Onboarded rapidly to clinical communications platforms, Windows Server, VoIP/SIP, and customer healthcare environments; resolved 50+ technical issues using structured diagnostics and root-cause analysis.</li>
+    <li>Authored technical documentation and process improvement guides; supported scripting and automation for junior team members.</li>
+    <li>Promoted to IT Systems Engineer II within 13 months based on performance across multiple concurrent projects.</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-head"><b>Sr. Specialist, Technology Design</b> <span class="org">| Ricoh USA</span> &nbsp;<span class="when">August 2019 &ndash; June 2024 | Remote</span></div>
+  <ul>
+    <li>Designed, configured, and validated proof-of-concept environments for Fortune 5000 clients, performing functionality testing and quality assurance prior to client demonstrations.</li>
+    <li>Conducted technical discovery sessions to gather business and system requirements, translating findings into solution designs, architecture diagrams, and integration documentation.</li>
+    <li>Served as an escalation point for cross-domain technical issues, coordinating with engineering and product teams to resolve blockers during solution delivery.</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-head"><b>IT Service Specialist</b> <span class="org">| Ricoh USA</span> &nbsp;<span class="when">August 2018 &ndash; July 2019</span></div>
+  <div class="job-head"><b>IT Channel Account Manager</b> <span class="org">| Ricoh USA</span> &nbsp;<span class="when">November 2015 &ndash; July 2018</span></div>
+  <div class="job-head"><b>Support Analyst</b> <span class="org">| Ricoh USA</span> &nbsp;<span class="when">July 2015 &ndash; October 2015</span></div>
+</div>
+
+<h2>AI &amp; Automation Projects</h2>
+<p class="note">Independent work, built and run on my own infrastructure. Details and code at <a href="https://mtdonnell.com">mtdonnell.com</a> and <a href="https://github.com/mtdonnell">github.com/mtdonnell</a>.</p>
+<ul>
+  <li><b>AI-Powered IT Knowledge Base:</b> Self-hosted Flask and SQLite service that uses the Claude API to turn raw IT notes into structured SOP articles, with full-text search across generated documents and their source notes. Runs in an Ubuntu LXC container on Proxmox.</li>
+  <li><b>Autonomous Multi-Agent Content Pipeline:</b> A crew of single-role Claude agents that hand work to one another with no human in the loop, calling ElevenLabs for narration and a generative image and video service, to turn one prompt into a finished illustrated film.</li>
+  <li><b>Shared AI Skill Library:</b> An indexed library of skill and workflow notes that Claude Code and Codex both load on demand, with a sync script and a written maintenance policy to keep agent context consistent between sessions.</li>
+  <li><b>silver-digest:</b> Python browser automation that produces scheduled sales reports for a point-of-sale system with no reporting API, delivered by Telegram, email, or SMS. In production for a two-location retailer.</li>
+</ul>
+
+<h2>Education &amp; Certifications</h2>
+<p class="edu"><b>B.S. Business, Information Technology Management</b> <span class="org">| Western Governors University, 2020</span></p>
+<p class="edu"><b>A.A. General Studies</b> <span class="org">| Jefferson College, 2016</span></p>
+<p class="edu"><b>Certifications:</b> CompTIA Security+ (Feb 2024) &nbsp;|&nbsp; ISC2 Certified in Cybersecurity, CC (Apr 2024)</p>
+
+</body>
+</html>

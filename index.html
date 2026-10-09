@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Matthew Donnell | Infrastructure, Automation, and Applied AI</title>
-<meta name="description" content="Matthew Donnell is an IT Systems Engineer with Security+ and ISC² CC, building hands-on projects across virtualization, monitoring, AI tooling, and automation.">
+<title>Matthew Donnell | Applied AI, Automation, and Infrastructure</title>
+<meta name="description" content="Matthew Donnell is an IT Systems Engineer with Security+ and ISC² CC, building hands-on projects across AI tooling, automation, virtualization, and monitoring.">
 <meta name="theme-color" content="#F97316">
 <meta name="author" content="Matthew Donnell">
 <link rel="canonical" href="https://mtdonnell.com/">
@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://mtdonnell.com/">
 <meta property="og:site_name" content="Matthew Donnell">
 <meta property="og:title" content="Matthew Donnell | IT Systems Engineer">
-<meta property="og:description" content="Infrastructure, automation, and applied AI. Hands-on projects across virtualization, monitoring, AI tooling, and automation.">
+<meta property="og:description" content="Applied AI, automation, and infrastructure. Hands-on projects across AI tooling, automation, virtualization, and monitoring.">
 <meta property="og:image" content="https://mtdonnell.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -23,7 +23,7 @@
 <!-- Twitter/X card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Matthew Donnell | IT Systems Engineer">
-<meta name="twitter:description" content="Infrastructure, automation, and applied AI. Hands-on projects across virtualization, monitoring, AI tooling, and automation.">
+<meta name="twitter:description" content="Applied AI, automation, and infrastructure. Hands-on projects across AI tooling, automation, virtualization, and monitoring.">
 <meta name="twitter:image" content="https://mtdonnell.com/assets/og-image.png">
 
 <!-- Favicons -->
@@ -320,12 +320,13 @@
   .center-cta { text-align: center; margin-top: 38px; }
 
   /* ---------- Portfolio page ---------- */
-  .page-head { padding: 72px 0 8px; }
+  .page-head { padding: 72px 24px 8px; }
   .page-head h2 {
     font-family: var(--display);
     font-size: clamp(30px, 5vw, 44px);
     font-weight: 800;
     letter-spacing: -0.028em;
+    line-height: 1.15;
     color: var(--ink);
     margin-bottom: 14px;
   }
@@ -642,7 +643,7 @@
   "name": "Matthew Donnell",
   "url": "https://mtdonnell.com/",
   "jobTitle": "IT Systems Engineer III",
-  "description": "IT Systems Engineer focused on infrastructure, automation, and applied AI.",
+  "description": "IT Systems Engineer focused on applied AI, automation, and infrastructure.",
   "address": {
     "@type": "PostalPlace",
     "addressLocality": "St. Louis",
@@ -662,6 +663,8 @@
     "PowerShell",
     "Python",
     "Docker",
+    "Agentic AI Workflows",
+    "Claude API",
     "Systems Integration",
     "Information Security"
   ],
@@ -694,13 +697,13 @@
 
   <header class="hero">
     <div class="wrap">
-      <div class="eyebrow">Infrastructure · Automation · Applied AI</div>
+      <div class="eyebrow">Applied AI · Automation · Infrastructure</div>
       <h1>Hi, I'm Matthew Donnell<span class="accent">.</span></h1>
       <div class="role">IT Systems Engineer III</div>
-      <div class="creds">Security+ · ISC² CC · Azure AI-900 (in progress)</div>
+      <div class="creds">Security+ · ISC² CC</div>
       <p class="tagline">
-        Building hands-on projects across virtualization, monitoring, AI tooling,
-        and automation, and writing about what I learn along the way.
+        Building hands-on projects across AI tooling, automation, virtualization,
+        and monitoring, and writing about what I learn along the way.
       </p>
       <div class="hero-actions">
         <button class="btn btn-solid" data-page="portfolio">View My Portfolio</button>
@@ -739,24 +742,24 @@
     <div class="wrap">
       <div class="section-kicker">Featured Projects</div>
       <h2 class="section-title">What I'm building</h2>
-      <p class="section-sub">Active work running in my home lab right now.</p>
+      <p class="section-sub">Active work, most of it running in my home lab right now.</p>
       <div class="proj-grid">
         <div class="proj-card" data-page="portfolio" role="link" tabindex="0">
           <span class="badge active">Active</span>
           <h3>AI-Powered IT Knowledge Base</h3>
-          <p>A self-hosted Flask app using the Claude and OpenAI APIs with agentic workflows to search and answer questions against my own technical documentation.</p>
+          <p>A self-hosted Flask and SQLite service that uses Claude to turn raw, messy IT notes into polished SOP articles, with full-text search across everything it generates.</p>
+          <span class="more">View details →</span>
+        </div>
+        <div class="proj-card" data-page="portfolio" role="link" tabindex="0">
+          <span class="badge active">Active</span>
+          <h3>Shared AI Skill Library</h3>
+          <p>An Obsidian vault of skill and workflow notes behind a single index. Claude Code and Codex both load from it on demand, so every agent session starts with the same operating context.</p>
           <span class="more">View details →</span>
         </div>
         <div class="proj-card" data-page="portfolio" role="link" tabindex="0">
           <span class="badge active">Active</span>
           <h3>Proxmox Home Lab</h3>
           <p>A virtualized environment for containerized services, infrastructure testing, and breaking things safely. The platform every other project runs on.</p>
-          <span class="more">View details →</span>
-        </div>
-        <div class="proj-card" data-page="portfolio" role="link" tabindex="0">
-          <span class="badge building">Building</span>
-          <h3>Obsidian Knowledge Vault</h3>
-          <p>A structured, linked vault of runbooks, lab notes, and project logs. The documentation engine behind every write-up on this site.</p>
           <span class="more">View details →</span>
         </div>
       </div>
@@ -776,7 +779,7 @@
           high-availability infrastructure behind clinical communication systems. The
           path between ran through a county admin desk where I was the only person
           fixing anything with a plug on it, then a help desk, then into IT without a
-          degree — which I went back for afterward.
+          degree, which I went back for afterward.
         </p>
         <p>
           These days my focus is infrastructure, automation, and the practical side
@@ -842,7 +845,8 @@
         <div class="tech-tags">
           <span class="tech-tag">Python</span><span class="tech-tag">Flask</span>
           <span class="tech-tag">PowerShell</span><span class="tech-tag">Node.js</span>
-          <span class="tech-tag">Claude API</span><span class="tech-tag">OpenAI API</span>
+          <span class="tech-tag">Claude API</span><span class="tech-tag">Claude Code</span>
+          <span class="tech-tag">Codex</span><span class="tech-tag">MCP</span>
           <span class="tech-tag">Agentic Workflows</span><span class="tech-tag">Git</span>
         </div>
       </div>
@@ -864,9 +868,9 @@
     <div class="section-kicker">Portfolio</div>
     <h2>Things I built because I wanted them to exist.</h2>
     <p>
-      Two tracks: the infrastructure I run, and what I've built on top of it with AI.
+      Two tracks: what I've built with AI, and the infrastructure it runs on.
       None of this was assigned to me. My professional work lives on the resume and
-      the About page &mdash; this is the other half. I publish the roadmap because
+      the About page. This is the other half. I publish the roadmap because
       plans you say out loud are plans you actually finish.
     </p>
   </div>
@@ -875,72 +879,8 @@
     <div class="wrap">
 
       <div class="track-head">
-        <div class="section-kicker">Track 01 &mdash; Infrastructure</div>
-        <h2 class="section-title">What I run</h2>
-        <p class="section-sub">The platform everything else sits on.</p>
-      </div>
-
-      <article class="full-proj">
-        <div class="top">
-          <h3>Proxmox Home Lab</h3>
-          <span class="badge active">Active</span>
-        </div>
-        <p>
-          A virtualized fleet for testing infrastructure changes, running containerized
-          services, and breaking things safely before they matter. Everything else on
-          this page runs here. High-availability thinking at a scale I can afford to
-          blow up &mdash; which is exactly why it's where I learn the things production
-          won't let me.
-        </p>
-        <div class="tags">
-          <span class="tag">Proxmox VE</span><span class="tag">LXC</span><span class="tag">Linux</span>
-          <span class="tag">Virtualization</span><span class="tag">Self-Hosting</span>
-        </div>
-      </article>
-
-      <article class="full-proj">
-        <div class="top">
-          <h3>Distributed Monitoring &amp; Automation Platform</h3>
-          <span class="badge active">Active</span>
-        </div>
-        <p>
-          A multi-agent system that watches a live online marketplace for state changes
-          and reacts within seconds. A central hub API coordinates distributed watcher
-          agents running across the Proxmox fleet, with client-side plugins reporting
-          telemetry back and a shared database reconciling what each agent believes it
-          saw. The hard part was never the watching &mdash; it was designing for agents
-          that disagree, and for a data source that lies by omission.
-        </p>
-        <div class="next-note">
-          <b>Deliberately vague:</b> the domain and mechanism are confidential. The
-          architecture is the interesting part anyway.
-        </div>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">Distributed Agents</span>
-          <span class="tag">Hub API</span><span class="tag">SQLite</span>
-          <span class="tag">Event Reconciliation</span><span class="tag">Proxmox</span>
-        </div>
-      </article>
-
-      <article class="full-proj">
-        <div class="top">
-          <h3>Obsidian Knowledge Vault</h3>
-          <span class="badge building">Building</span>
-        </div>
-        <p>
-          A structured, linked vault for everything I know and everything I'm learning:
-          runbooks, lab notes, project logs, and study material. Every project on this
-          page gets documented here first, then published as a write-up. The habit is
-          the project.
-        </p>
-        <div class="tags">
-          <span class="tag">Obsidian</span><span class="tag">Markdown</span><span class="tag">Documentation</span>
-        </div>
-      </article>
-
-      <div class="track-head">
-        <div class="section-kicker">Track 02 &mdash; Applied AI</div>
-        <h2 class="section-title">What I've built with it</h2>
+        <div class="section-kicker">Track 01 &mdash; Applied AI</div>
+        <h2 class="section-title">What I've built</h2>
         <p class="section-sub">
           Tools I actually use, not demos. Most of these exist because I wanted the
           thing and nobody had built it the way I wanted it.
@@ -1020,8 +960,8 @@
           A fully autonomous agentic workflow that turned a single prompt into a
           finished illustrated learning film for my kids, in the spirit of
           <em>Bluey</em> and <em>Blippi</em>. A crew of specialized agents each held one
-          job &mdash; a story hunter to source the idea, an author to write it, others
-          down the chain &mdash; each handing off to the next with no human in the loop.
+          job: a story hunter to source the idea, an author to write it, and others
+          down the chain. Each handed off to the next with no human in the loop.
           The pipeline called out to ElevenLabs for narration and a separate service for
           image and video generation, and an episode came out the far end on its own.
         </p>
@@ -1034,6 +974,31 @@
           <span class="tag">Claude</span><span class="tag">Multi-Agent Orchestration</span>
           <span class="tag">ElevenLabs</span><span class="tag">Generative Video</span>
           <span class="tag">Prompt Design</span>
+        </div>
+      </article>
+
+      <article class="full-proj">
+        <div class="top">
+          <h3>Shared AI Skill Library</h3>
+          <span class="badge active">Active</span>
+        </div>
+        <p>
+          An Obsidian vault that works as shared memory for the coding agents I use.
+          Skill and workflow notes sit behind a single index, and Claude Code and
+          Codex are both told to start there and load only the one note that matches
+          the task, never the whole vault. A sync script keeps the reference
+          copies in step with the runtime source, and a written policy says which
+          notes are generated and which are maintained by hand.
+        </p>
+        <p>
+          It exists because agents forget everything between sessions. Context that
+          is cheap to recover is worth more than a longer prompt, and a library
+          nobody prunes turns into noise the model has to read around.
+        </p>
+        <div class="tags">
+          <span class="tag">Obsidian</span><span class="tag">Markdown</span>
+          <span class="tag">Claude Code</span><span class="tag">Codex</span>
+          <span class="tag">Agent Context</span>
         </div>
       </article>
 
@@ -1053,6 +1018,82 @@
         <div class="tags">
           <span class="tag">Docker Compose</span><span class="tag">Self-Hosting</span>
           <span class="tag">PDF</span>
+        </div>
+      </article>
+
+      <div class="track-head">
+        <div class="section-kicker">Track 02 &mdash; Infrastructure</div>
+        <h2 class="section-title">What I run</h2>
+        <p class="section-sub">The platform all of it sits on, and the automation that runs there.</p>
+      </div>
+
+      <article class="full-proj">
+        <div class="top">
+          <h3>Proxmox Home Lab</h3>
+          <span class="badge active">Active</span>
+        </div>
+        <p>
+          A virtualized fleet for testing infrastructure changes, running containerized
+          services, and breaking things safely before they matter. Most of what is on
+          this page runs here. High-availability thinking at a scale I can afford to
+          blow up, which is exactly why it's where I learn the things production
+          won't let me.
+        </p>
+        <p>
+          It is a single Proxmox node, so the operations work is the interesting part:
+          nightly guest backups, encrypted offsite copies to object storage, a restore
+          I have actually tested, uptime checks, and alerts to Discord for disk space,
+          SSD wear, and failed backups.
+        </p>
+        <div class="tags">
+          <span class="tag">Proxmox VE</span><span class="tag">LXC</span><span class="tag">Linux</span>
+          <span class="tag">Virtualization</span><span class="tag">Self-Hosting</span>
+          <span class="tag">Backup &amp; Restore</span><span class="tag">Alerting</span>
+        </div>
+      </article>
+
+      <article class="full-proj">
+        <div class="top">
+          <h3>Distributed Monitoring &amp; Automation Platform</h3>
+          <span class="badge active">Active</span>
+        </div>
+        <p>
+          A multi-agent system that watches a live online marketplace for state changes
+          and reacts within seconds. A central hub API coordinates distributed watcher
+          agents running across the Proxmox fleet, with client-side plugins reporting
+          telemetry back and a shared database reconciling what each agent believes it
+          saw. Watching was the easy part. The hard part was designing for agents
+          that disagree, and for a data source that lies by omission.
+        </p>
+        <div class="next-note">
+          <b>Deliberately vague:</b> the domain and mechanism are confidential. The
+          architecture is the interesting part anyway.
+        </div>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Distributed Agents</span>
+          <span class="tag">Hub API</span><span class="tag">SQLite</span>
+          <span class="tag">Event Reconciliation</span><span class="tag">Proxmox</span>
+        </div>
+      </article>
+
+      <article class="full-proj">
+        <div class="top">
+          <h3>silver-digest</h3>
+          <span class="badge active">Active</span>
+        </div>
+        <p>
+          Scheduled sales reporting for a point-of-sale back office that has none. It
+          logs in, pulls the daily summary, records it to a history file the owner
+          keeps, and sends the numbers by Telegram, email, or SMS on a schedule. A
+          companion bot answers ad-hoc date-range questions in about twenty seconds.
+          It runs in production for a two-location retailer.
+        </p>
+        <p class="proj-links">
+          <a href="https://github.com/mtdonnell/silver-digest" target="_blank" rel="noopener">github.com/mtdonnell/silver-digest &rarr;</a>
+        </p>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Browser Automation</span>
+          <span class="tag">Scheduled Reporting</span><span class="tag">Telegram Bot</span>
         </div>
       </article>
 
@@ -1084,8 +1125,8 @@
         <p class="phase-desc">Connecting the lab to AI tooling and building integration projects worth writing about.</p>
         <div class="timeline">
           <div class="tl-item">
-            <div class="tl-top"><h4>MCP server for the knowledge vault</h4><span class="badge planned">Planned</span></div>
-            <p>A Model Context Protocol server that lets AI assistants query my Obsidian vault and knowledge base directly, with access controls on what leaves the machine.</p>
+            <div class="tl-top"><h4>MCP server for the skill library</h4><span class="badge planned">Planned</span></div>
+            <p>A Model Context Protocol server that lets AI assistants query my skill library and knowledge base directly, with access controls on what leaves the machine.</p>
             <div class="skills">MCP · tool calling · agent architecture</div>
           </div>
           <div class="tl-item">
@@ -1165,8 +1206,8 @@
         That was enough to land an IT job without a degree, which is backwards from how
         it is usually done. I have been working full time since I turned eighteen, so
         the education happened around a forty-hour week the entire way. The associate's
-        took a while. The bachelor's landed in 2018, seven years after high school, by
-        which point I was already three years into the next job. Studying things I had
+        took a while. The bachelor's landed in 2020, nine years after high school, by
+        which point I was already five years into the next job. Studying things I had
         first had to solve at work turned out to be a reasonable way to learn them.
       </p>
       <p>
@@ -1209,7 +1250,7 @@
   <section class="block">
     <div class="wrap">
       <div class="section-kicker">Certifications</div>
-      <h2 class="section-title">Earned and in progress</h2>
+      <h2 class="section-title">Earned</h2>
       <div class="cert-grid" style="margin-top: 24px;">
         <div class="cert-card">
           <div class="name">CompTIA Security+</div>
@@ -1223,10 +1264,6 @@
           <div class="name">Rauland Platform Certifications ×3</div>
           <div class="meta">Enterprise communication systems</div>
         </div>
-        <div class="cert-card">
-          <div class="name">Microsoft Azure AI Fundamentals</div>
-          <div class="meta progress">AI-900 · In progress</div>
-        </div>
       </div>
     </div>
   </section>
@@ -1237,7 +1274,7 @@
   <div class="wrap page-head">
     <div class="section-kicker">Contact</div>
     <h2>Get in touch.</h2>
-    <p>I like talking shop &mdash; high-availability design, monitoring that catches the right failures, and the practical side of AI. If you're working on something in that space, or something here was useful, get in touch. Email or LinkedIn gets the fastest response.</p>
+    <p>I like talking shop: high-availability design, monitoring that catches the right failures, and the practical side of AI. If you're working on something in that space, or something here was useful, get in touch. Email or LinkedIn gets the fastest response.</p>
   </div>
   <section class="block" style="border-top: none; padding-top: 40px;">
     <div class="wrap">
@@ -1253,7 +1290,7 @@
 
 <footer>
   <div class="wrap footer-inner">
-    <span>&copy; <span id="year">2026</span> Matthew Donnell &nbsp;·&nbsp; Last updated August 2026</span>
+    <span>&copy; <span id="year">2026</span> Matthew Donnell &nbsp;·&nbsp; Last updated October 2026</span>
     <div class="links">
       <a href="mailto:matthewtdonnell@gmail.com">Email</a>
       <a href="https://linkedin.com/in/mdonn" target="_blank" rel="noopener">LinkedIn</a>
@@ -1345,26 +1382,29 @@
         rich('<a href="#about" data-page="about">Read the longer version &rarr;</a>');
       },
       lab() {
-        line("Proxmox VE cluster", "term-accent");
+        line("Proxmox VE, single node", "term-accent");
         line("  ├── LXC   knowledge base (Flask + SQLite + Claude)");
-        line("  ├── LXC   distributed watcher agents");
-        line("  ├── VM    Windows test environment");
+        line("  ├── LXC   hub API for the distributed watcher agents");
+        line("  ├── LXC   Pi-hole · Plex · Uptime Kuma");
+        line("  ├── VM    TrueNAS · Home Assistant · Windows and Linux workers");
+        line("  ├── ops   nightly backups, encrypted offsite copy, Discord alerts");
         line("  └── plan  Grafana + Prometheus, then Wazuh SIEM");
         line("");
         line("Everything I know about production, I broke here first.", "term-muted");
       },
       projects() {
-        line("Infrastructure", "term-accent");
-        line("  proxmox-home-lab            the platform it all runs on");
-        line("  distributed-monitoring      multi-agent watcher fleet [confidential]");
-        line("  obsidian-vault              runbooks and lab notes");
-        line("");
         line("Applied AI", "term-accent");
         line("  BrainOS                     answers compressed into a knowledge graph");
         line("  Synaptic                    spaced-repetition learning engine");
         line("  it-knowledgebase-ai         raw notes to polished SOPs");
         line("  story-pipeline              autonomous agent crew, prompt to film");
+        line("  skill-library               shared context for Claude Code and Codex");
         line("  PDF-Editor                  self-hosted, containerized");
+        line("");
+        line("Infrastructure", "term-accent");
+        line("  proxmox-home-lab            the platform it all runs on");
+        line("  distributed-monitoring      multi-agent watcher fleet [confidential]");
+        line("  silver-digest               scheduled sales reporting, in production");
         line("");
         rich('<a href="#portfolio" data-page="portfolio">Full portfolio &rarr;</a>');
       },
@@ -1375,13 +1415,12 @@
         line("network   VLANs · DNS · load balancing · VoIP/SIP");
         line("monitor   PRTG · service-dependency sensor design");
         line("code      Python · PowerShell · Node.js · Flask");
-        line("ai        Claude API · agentic workflows · MCP");
+        line("ai        Claude API · Claude Code · Codex · agentic workflows · MCP");
       },
       certs() {
         line("CompTIA Security+                     issued Feb 2024", "term-ok");
         line("ISC² Certified in Cybersecurity (CC)  issued Apr 2024", "term-ok");
         line("Rauland Platform Certifications ×3    enterprise comms", "term-ok");
-        line("Microsoft Azure AI Fundamentals       AI-900, in progress", "term-accent");
       },
       contact() {
         rich('email     <a href="mailto:matthewtdonnell@gmail.com">matthewtdonnell@gmail.com</a>');
@@ -1402,7 +1441,7 @@
         line("      ◆   ◆       Location St. Louis, MO");
         line("        ◆         Uptime   11 years in IT");
         line("                  Shell    PowerShell / bash");
-        line("                  Host     Proxmox VE cluster");
+        line("                  Host     Proxmox VE");
         line("                  Editor   Obsidian + Claude Code");
       },
       clear() { out.innerHTML = ""; return true; },
